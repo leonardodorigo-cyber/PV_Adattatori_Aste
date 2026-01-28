@@ -25,6 +25,14 @@ def carica_dati(file_path=None, uploaded_file=None):
         df = pd.read_excel(file_path)
     else:
         return None, None
+  
+    # ✅ DEBUG: Stampa info sul DataFrame
+    print("=== DEBUG INFO ===")
+    print(f"Colonne disponibili: {df.columns.tolist()}")
+    print(f"Righe totali: {len(df)}")
+    print(f"Righe con Cd_Ar NaN: {df['Cd_Ar'].isna().sum()}")
+    print(f"Prime 5 righe Cd_Ar:\n{df['Cd_Ar'].head()}")
+    print("==================")
     
     # Pulizia nomi adattatori
     df["Attacco_1"] = df["ATTACCO_1"].str.replace(r"\s*\(.*?\)", "", regex=True)
