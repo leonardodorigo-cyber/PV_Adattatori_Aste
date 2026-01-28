@@ -137,6 +137,7 @@ def stampa_sequenza_attacchi(sequenza_articoli, df, attacco_partenza):
 
         if riga.empty:
             return f"❌ ERRORE: Codice articolo {cd_ar} non trovato nel dataset"
+        riga = riga_df.iloc[0]
         
         fil1 = riga.iloc[0]["Filetto_1"]
         gen1 = riga.iloc[0]["Genere_1"]
