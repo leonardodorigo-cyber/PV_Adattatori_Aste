@@ -177,7 +177,7 @@ with col2:
 
 with col3:
     max_articoli = st.number_input(
-        "⚙️ N°Max Adattatori Combinabili",
+        "⚙️ N° Max Adattatori Combinabili",
         min_value=1,
         max_value=5,
         value=3,
