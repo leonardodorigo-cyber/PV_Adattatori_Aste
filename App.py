@@ -226,7 +226,7 @@ if st.button("🔍 CERCA PERCORSI", type="primary", use_container_width=True):
     st.markdown("---")
     if len(percorsi_trovati)>1:
         st.subheader(f"📊 Risultati: {len(percorsi_trovati)} combinazione trovata")
-    else
+    else:
         st.subheader(f"📊 Risultati: {len(percorsi_trovati)} combinazioni trovate")
         
     
