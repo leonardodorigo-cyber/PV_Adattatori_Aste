@@ -209,6 +209,15 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
         # Ordina per numero articoli
         percorsi_trovati = sorted(percorsi_trovati, key=len)
         
+        # ✅ DEBUG: Controlliamo cosa contengono i percorsi
+        st.write("DEBUG - Primi 3 percorsi trovati:")
+        for idx, p in enumerate(percorsi_trovati[:3]):
+            st.write(f"Percorso {idx}: {p} | Tipo: {[type(x) for x in p]}")
+        
+        # RIMOZIONE PERCORSI DUPLICATI
+        percorsi_unici = []
+        visti = set()
+        
         # ---------------------------------------------------------------------------
         # RIMOZIONE PERCORSI DUPLICATI (ordine-indipendenti)
         # ---------------------------------------------------------------------------
