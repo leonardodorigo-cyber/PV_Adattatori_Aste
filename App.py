@@ -222,7 +222,7 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
                 visti.add(chiave)
                 percorsi_unici.append(p)
 
-        #percorsi_trovati = percorsi_unici
+        percorsi_trovati = percorsi_unici
     
     # ---------------------------------------------------------------------------
     # RISULTATI
