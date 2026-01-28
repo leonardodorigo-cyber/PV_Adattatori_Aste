@@ -134,6 +134,9 @@ def stampa_sequenza_attacchi(sequenza_articoli, df, attacco_partenza):
     
     for cd_ar in sequenza_articoli:
         riga = df[df["Cd_Ar"] == cd_ar]
+
+        if riga.empty:
+            return f"❌ ERRORE: Codice articolo {cd_ar} non trovato nel dataset"
         
         fil1 = riga.iloc[0]["Filetto_1"]
         gen1 = riga.iloc[0]["Genere_1"]
