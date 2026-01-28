@@ -2,6 +2,13 @@
 
 App Streamlit per trovare percorsi tra attacchi idraulici utilizzando adattatori.
 
+## ✨ Caratteristiche
+
+- **Database precaricato**: Include il file `DW_lista_adattatori_completa.xlsx`
+- **Caricamento personalizzato**: Possibilità di caricare un file Excel diverso
+- **Ricerca intelligente**: Algoritmo DFS per trovare tutti i percorsi possibili
+- **Interfaccia intuitiva**: Semplice da usare, risultati chiari
+
 ## 📋 Requisiti del File Excel
 
 Il file Excel deve contenere le seguenti colonne:
@@ -16,11 +23,12 @@ Il file Excel deve contenere le seguenti colonne:
 
 ## 🚀 Come usare l'app
 
-1. Carica il file Excel con gli adattatori
+1. L'app carica automaticamente il database predefinito
 2. Seleziona l'attacco di partenza
 3. Seleziona l'attacco di arrivo
 4. Imposta il numero massimo di articoli
 5. Clicca "CERCA PERCORSI"
+6. (Opzionale) Carica un file Excel diverso se necessario
 
 ## 💻 Installazione locale
 
