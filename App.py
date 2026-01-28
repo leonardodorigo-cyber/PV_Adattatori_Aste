@@ -26,13 +26,13 @@ def carica_dati(file_path=None, uploaded_file=None):
     else:
         return None, None
   
-    # ✅ DEBUG: Stampa info sul DataFrame
-    st.write("=== DEBUG INFO ===")
-    st.write(f"Colonne disponibili: {df.columns.tolist()}")
-    st.write(f"Righe totali: {len(df)}")
-    st.write(f"Righe con Cd_Ar NaN: {df['Cd_Ar'].isna().sum()}")
-    st.write(f"Prime 5 righe Cd_Ar:\n{df['Cd_Ar'].head()}")
-    st.write("==================")
+    # # ✅ DEBUG: Stampa info sul DataFrame
+    # st.write("=== DEBUG INFO ===")
+    # st.write(f"Colonne disponibili: {df.columns.tolist()}")
+    # st.write(f"Righe totali: {len(df)}")
+    # st.write(f"Righe con Cd_Ar NaN: {df['Cd_Ar'].isna().sum()}")
+    # st.write(f"Prime 5 righe Cd_Ar:\n{df['Cd_Ar'].head()}")
+    # st.write("==================")
     
     # Pulizia nomi adattatori
     df["Attacco_1"] = df["ATTACCO_1"].str.replace(r"\s*\(.*?\)", "", regex=True)
