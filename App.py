@@ -9,7 +9,7 @@ st.set_page_config(page_title="Ricerca Percorsi Adattatori", layout="wide")
 # ---------------------------------------------------------------------------
 # TITOLO
 # ---------------------------------------------------------------------------
-st.title("🔧 Ricerca Percorsi tra Attacchi Idraulici")
+st.title("🔧 Ricerca Adattatori Aste Perforatrici Teleguidate")
 st.markdown("---")
 
 # ---------------------------------------------------------------------------
@@ -177,7 +177,7 @@ with col2:
 
 with col3:
     max_articoli = st.number_input(
-        "⚙️ Max Articoli",
+        "⚙️ N°Max Adattatori Combinabili",
         min_value=1,
         max_value=5,
         value=3,
@@ -224,7 +224,11 @@ if st.button("🔍 CERCA PERCORSI", type="primary", use_container_width=True):
     # RISULTATI
     # ---------------------------------------------------------------------------
     st.markdown("---")
-    st.subheader(f"📊 Risultati: {len(percorsi_trovati)} percorsi trovati")
+    if len(percorsi_trovati)>1:
+        st.subheader(f"📊 Risultati: {len(percorsi_trovati)} combinazione trovata")
+    else
+        st.subheader(f"📊 Risultati: {len(percorsi_trovati)} combinazioni trovate")
+        
     
     if percorsi_trovati:
         
@@ -234,7 +238,7 @@ if st.button("🔍 CERCA PERCORSI", type="primary", use_container_width=True):
             percorsi_per_num[len(p)].append(p)
         
         # Mostra con tabs
-        tabs = st.tabs([f"{'⭐' if i==1 else ''} {i} articol{'i' if i>1 else 'o'} ({len(percorsi_per_num[i])} percorsi)" 
+        tabs = st.tabs([f"{'⭐' if i==1 else ''} {i} articol{'i' if i>1 else 'o'} ({len(percorsi_per_num[i])} combinazioni)" 
                        for i in sorted(percorsi_per_num.keys())])
         
         for idx, num_art in enumerate(sorted(percorsi_per_num.keys())):
@@ -242,7 +246,7 @@ if st.button("🔍 CERCA PERCORSI", type="primary", use_container_width=True):
                 for i, sequenza_articoli in enumerate(percorsi_per_num[num_art], 1):
                     sequenza_attacchi = stampa_sequenza_attacchi(sequenza_articoli, df, attacco_partenza)
                     
-                    with st.expander(f"Percorso {i}:   {' → '.join(sequenza_articoli)}", expanded=(i<=3)):
+                    with st.expander(f"Combinazione {i}:   {' → '.join(sequenza_articoli)}", expanded=(i<=3)):
                         st.markdown(f"**Codici Articolo:**   `{' → '.join(sequenza_articoli)}`")
                         st.markdown(f"**Sequenza Attacchi:**   `{sequenza_attacchi}`")
                         
@@ -253,8 +257,8 @@ if st.button("🔍 CERCA PERCORSI", type="primary", use_container_width=True):
                             descr = f" | `{riga['DESCRIZIONE']}`" if pd.notna(riga['DESCRIZIONE']) else ""
                             st.markdown(f"- {cd_ar} : `{riga['ATTACCO_1']} ↔ {riga['ATTACCO_2']}`  {descr}")
     else:
-        st.warning("⚠️ Nessun percorso trovato con i parametri selezionati")
-        st.info("💡 Prova ad aumentare il numero massimo di articoli")
+        st.warning("⚠️ Nessuna combinazione trovata con gli attacchi selezionati")
+        st.info("💡 Prova ad aumentare il numero massimo di adattatori impiegabili")
 
 # ---------------------------------------------------------------------------
 # SIDEBAR INFO
@@ -269,8 +273,8 @@ with st.sidebar:
     **Come usare:**
     1. Seleziona attacco di partenza (dell'adattatore desiderato)
     2. Seleziona attacco di arrivo 
-    3. Imposta n° max articoli
-    4. Clicca "CERCA PERCORSI"
+    3. Imposta n° max adattori impiegabili
+    4. Clicca "RICERCA ADATTATORI"
     
     **Algoritmo:**
     - DFS (Depth-First Search)
