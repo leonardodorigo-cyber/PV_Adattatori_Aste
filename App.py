@@ -147,12 +147,12 @@ def stampa_sequenza_attacchi(sequenza_articoli, df, attacco_partenza):
             return f"❌ ERRORE: Codice articolo {cd_ar} non trovato nel dataset"
         riga = riga.iloc[0]
         
-        fil1 = riga.iloc[0]["Filetto_1"]
-        gen1 = riga.iloc[0]["Genere_1"]
-        fil2 = riga.iloc[0]["Filetto_2"]
-        gen2 = riga.iloc[0]["Genere_2"]
-        att1 = riga.iloc[0]["Attacco_1"]
-        att2 = riga.iloc[0]["Attacco_2"]
+        fil1 = riga["Filetto_1"]
+        gen1 = riga["Genere_1"]
+        fil2 = riga["Filetto_2"]
+        gen2 = riga["Genere_2"]
+        att1 = riga["Attacco_1"]
+        att2 = riga["Attacco_2"]
         
         nodo1 = (fil1, gen1)
         nodo2 = (fil2, gen2)
