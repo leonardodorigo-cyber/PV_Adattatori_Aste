@@ -1,6 +1,6 @@
-# 🔧 Ricerca Percorsi Adattatori Idraulici
+# 🔧 Ricerca Adattatori Aste Perforatrici Teleguidate
 
-App Streamlit per trovare percorsi tra attacchi idraulici utilizzando adattatori.
+App Streamlit per trovare combinazioni di adattatori per le aste di perforatrici teleguidate.
 
 ## ✨ Caratteristiche
 
