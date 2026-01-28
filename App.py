@@ -246,7 +246,7 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
                 for i, sequenza_articoli in enumerate(percorsi_per_num[num_art], 1):
                     sequenza_attacchi = stampa_sequenza_attacchi(sequenza_articoli, df, attacco_partenza)
                     
-                    with st.expander(f"Combinazione {i}:   {' → '.join(sequenza_articoli)}", expanded=(i<3)):
+                    with st.expander(f"Combinazione {i}:   {' → '.join(sequenza_articoli)}", expanded=(i<1)):
                         st.markdown(f"**Codici Articolo:**   `{' → '.join(sequenza_articoli)}`")
                         st.markdown(f"**Sequenza Attacchi:**   `{sequenza_attacchi}`")
                         
