@@ -258,7 +258,7 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
                             st.markdown(f"- {cd_ar} : `{riga['ATTACCO_1']} ↔ {riga['ATTACCO_2']}`  {descr}")
     else:
         st.warning("⚠️ Nessuna combinazione trovata con gli attacchi selezionati")
-        st.info("💡 Prova ad aumentare il numero massimo di adattatori impiegabili")
+        st.info("💡 Prova ad aumentare il numero massimo di adattatori impiegabili (max=3)")
 
 # ---------------------------------------------------------------------------
 # SIDEBAR INFO
