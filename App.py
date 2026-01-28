@@ -213,16 +213,16 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
         # RIMOZIONE PERCORSI DUPLICATI (ordine-indipendenti)
         # ---------------------------------------------------------------------------
 
-        percorsi_unici = []
-        visti = set()
+        #percorsi_unici = []
+        #visti = set()
 
-        for p in percorsi_trovati:
-            chiave = tuple(sorted(p))   # stesso set di adattatori = stesso percorso
-            if chiave not in visti:
-                visti.add(chiave)
-                percorsi_unici.append(p)
+        #for p in percorsi_trovati:
+        #    chiave = tuple(sorted(p))   # stesso set di adattatori = stesso percorso
+        #    if chiave not in visti:
+        #        visti.add(chiave)
+        #        percorsi_unici.append(p)
 
-        percorsi_trovati = percorsi_unici
+        #percorsi_trovati = percorsi_unici
     
     # ---------------------------------------------------------------------------
     # RISULTATI
