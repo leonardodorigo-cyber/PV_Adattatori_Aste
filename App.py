@@ -104,7 +104,7 @@ def costruisci_grafo(df):
     for _, row in df.iterrows():
         f1, g1 = row['Filetto_1'], row['Genere_1']
         f2, g2 = row['Filetto_2'], row['Genere_2']
-        cd_ar = row['Cd_Ar']
+        cd_ar = str(row['Cd_Ar'])
         
         grafo[(f1, g1)].append(((f2, g2), cd_ar))
         grafo[(f2, g2)].append(((f1, g1), cd_ar))
