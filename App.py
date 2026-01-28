@@ -27,12 +27,12 @@ def carica_dati(file_path=None, uploaded_file=None):
         return None, None
   
     # ✅ DEBUG: Stampa info sul DataFrame
-    print("=== DEBUG INFO ===")
-    print(f"Colonne disponibili: {df.columns.tolist()}")
-    print(f"Righe totali: {len(df)}")
-    print(f"Righe con Cd_Ar NaN: {df['Cd_Ar'].isna().sum()}")
-    print(f"Prime 5 righe Cd_Ar:\n{df['Cd_Ar'].head()}")
-    print("==================")
+    st.write("=== DEBUG INFO ===")
+    st.write(f"Colonne disponibili: {df.columns.tolist()}")
+    st.write(f"Righe totali: {len(df)}")
+    st.write(f"Righe con Cd_Ar NaN: {df['Cd_Ar'].isna().sum()}")
+    st.write(f"Prime 5 righe Cd_Ar:\n{df['Cd_Ar'].head()}")
+    st.write("==================")
     
     # Pulizia nomi adattatori
     df["Attacco_1"] = df["ATTACCO_1"].str.replace(r"\s*\(.*?\)", "", regex=True)
@@ -217,14 +217,10 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
         # Ordina per numero articoli
         percorsi_trovati = sorted(percorsi_trovati, key=len)
         
-        # ✅ DEBUG: Controlliamo cosa contengono i percorsi
-        st.write("DEBUG - Primi 3 percorsi trovati:")
-        for idx, p in enumerate(percorsi_trovati[:3]):
-            st.write(f"Percorso {idx}: {p} | Tipo: {[type(x) for x in p]}")
-        
-        # RIMOZIONE PERCORSI DUPLICATI
-        percorsi_unici = []
-        visti = set()
+        # # ✅ DEBUG: Controlliamo cosa contengono i percorsi
+        # st.write("DEBUG - Primi 3 percorsi trovati:")
+        # for idx, p in enumerate(percorsi_trovati[:3]):
+        #     st.write(f"Percorso {idx}: {p} | Tipo: {[type(x) for x in p]}")
         
         # ---------------------------------------------------------------------------
         # RIMOZIONE PERCORSI DUPLICATI (ordine-indipendenti)
