@@ -187,7 +187,7 @@ with col3:
 # ---------------------------------------------------------------------------
 # RICERCA PERCORSI
 # ---------------------------------------------------------------------------
-if st.button("🔍 CERCA PERCORSI", type="primary", use_container_width=True):
+if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True):
     
     with st.spinner("Ricerca in corso..."):
         
@@ -225,9 +225,9 @@ if st.button("🔍 CERCA PERCORSI", type="primary", use_container_width=True):
     # ---------------------------------------------------------------------------
     st.markdown("---")
     if len(percorsi_trovati)>1:
-        st.subheader(f"📊 Risultati: {len(percorsi_trovati)} combinazione trovata")
-    else:
         st.subheader(f"📊 Risultati: {len(percorsi_trovati)} combinazioni trovate")
+    else:
+        st.subheader(f"📊 Risultati: {len(percorsi_trovati)} combinazione trovata")
         
     
     if percorsi_trovati:
@@ -238,7 +238,7 @@ if st.button("🔍 CERCA PERCORSI", type="primary", use_container_width=True):
             percorsi_per_num[len(p)].append(p)
         
         # Mostra con tabs
-        tabs = st.tabs([f"{'⭐' if i==1 else ''} {i} articol{'i' if i>1 else 'o'} ({len(percorsi_per_num[i])} combinazioni)" 
+        tabs = st.tabs([f"{'⭐' if i==1 else ''} {i} adattator{'i' if i>1 else 'e'} ({len(percorsi_per_num[i])} combinazioni)" 
                        for i in sorted(percorsi_per_num.keys())])
         
         for idx, num_art in enumerate(sorted(percorsi_per_num.keys())):
