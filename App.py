@@ -345,10 +345,13 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
     
                         # Crea DataFrame per la tabella
                         df_tabella = pd.DataFrame(dettagli)
+
+                        # Aggiungi colonna "#" che parte da 1
+                        df_tabella.insert(0, "#", range(1, len(df_tabella) + 1))
                     
                         # Mostra tabella in Streamlit
-                        # st.table(df_tabella)
-                        st.table(df_tabella.reset_index(drop=True)) # senza rowID
+                        st.table(df_tabella)
+                        # st.table(df_tabella.reset_index(drop=True)) # senza rowID
     
     else:
         st.warning("⚠️ Nessuna combinazione trovata con gli attacchi selezionati")
