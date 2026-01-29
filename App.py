@@ -60,35 +60,13 @@ def carica_dati(file_path=None, uploaded_file=None):
 FILE_EXCEL = "DW_lista_adattatori_completa.xlsx"
 df, anagrafica_attacchi = carica_dati(file_path=FILE_EXCEL)
 
-# Se il file predefinito non esiste, mostra l'uploader
+# Se il file predefinito non esiste, blocca l'app
 if df is None:
-    st.info("📁 Il file predefinito non è disponibile. Carica il tuo file Excel:")
-    uploaded_file = st.file_uploader(
-        "Carica il file Excel con gli adattatori",
-        type=['xlsx', 'xls'],
-        help="Il file deve contenere: Cd_Ar, ATTACCO_1, ATTACCO_2, Filetto_1, Filetto_2, Genere_1, Genere_2"
-    )
-    
-    if uploaded_file is None:
-        st.stop()
-    
-    df, anagrafica_attacchi = carica_dati(uploaded_file=uploaded_file)
-    st.success(f"✅ File caricato: {len(df)} adattatori trovati")
-else:
-    st.success(f"✅ Database caricato: {len(df)} adattatori disponibili")
-    
-    # Opzione per caricare un file diverso
-    with st.expander("🔄 Vuoi caricare un file diverso?"):
-        uploaded_file = st.file_uploader(
-            "Carica un altro file Excel",
-            type=['xlsx', 'xls'],
-            help="Il file deve contenere: Cd_Ar, ATTACCO_1, ATTACCO_2, Filetto_1, Filetto_2, Genere_1, Genere_2"
-        )
-        
-        if uploaded_file is not None:
-            df, anagrafica_attacchi = carica_dati(uploaded_file=uploaded_file)
-            st.success(f"✅ Nuovo file caricato: {len(df)} adattatori trovati")
-            st.rerun()
+    st.error(f"❌ File predefinito '{FILE_EXCEL}' non trovato. L'app si interrompe.")
+    st.stop()
+
+# Se il file esiste, procedi
+st.success(f"✅ Database caricato: {len(df)} adattatori disponibili")
 
 # ---------------------------------------------------------------------------
 # FUNZIONI
