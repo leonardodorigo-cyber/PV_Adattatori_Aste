@@ -367,9 +367,9 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
     # Mostra tabella in Streamlit
     st.table(df_tabella)
     
-    else:
-        st.warning("⚠️ Nessuna combinazione trovata con gli attacchi selezionati")
-        st.info("💡 Prova ad aumentare il numero massimo di adattatori impiegabili (max=3)")
+    #else:
+    #    st.warning("⚠️ Nessuna combinazione trovata con gli attacchi selezionati")
+    #    st.info("💡 Prova ad aumentare il numero massimo di adattatori impiegabili (max=3)")
 
 # ---------------------------------------------------------------------------
 # SIDEBAR INFO
