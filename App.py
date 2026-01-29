@@ -348,24 +348,24 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
 
                         # st.markdown(f"**Sequenza Attacchi:**   `{sequenza_attacchi}`")
 
-                    # Crea lista dei dettagli
-                    dettagli = []
+                        # Crea lista dei dettagli
+                        dettagli = []
+                        
+                        for cd_ar in sequenza_articoli:
+                            riga_df = df[df["Cd_Ar"] == cd_ar]
+                            if not riga_df.empty:
+                                riga = riga_df.iloc[0]
+                                dettagli.append({
+                                    "Articolo": cd_ar,
+                                    "Categoria": riga['Category'] if pd.notna(riga['Category']) else "",
+                                    "Thread Info": riga['THREAD_INFO'] if pd.notna(riga['THREAD_INFO']) else ""
+                                })
+    
+                        # Crea DataFrame per la tabella
+                        df_tabella = pd.DataFrame(dettagli)
                     
-                    for cd_ar in sequenza_articoli:
-                        riga_df = df[df["Cd_Ar"] == cd_ar]
-                        if not riga_df.empty:
-                            riga = riga_df.iloc[0]
-                            dettagli.append({
-                                "Articolo": cd_ar,
-                                "Categoria": riga['Category'] if pd.notna(riga['Category']) else "",
-                                "Thread Info": riga['THREAD_INFO'] if pd.notna(riga['THREAD_INFO']) else ""
-                            })
-
-                    # Crea DataFrame per la tabella
-                    df_tabella = pd.DataFrame(dettagli)
-                
-                    # Mostra tabella in Streamlit
-                    st.table(df_tabella)
+                        # Mostra tabella in Streamlit
+                        st.table(df_tabella)
     
     else:
         st.warning("⚠️ Nessuna combinazione trovata con gli attacchi selezionati")
