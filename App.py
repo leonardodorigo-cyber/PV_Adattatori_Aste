@@ -360,12 +360,6 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
                                 "Categoria": riga['Category'] if pd.notna(riga['Category']) else "",
                                 "Thread Info": riga['THREAD_INFO'] if pd.notna(riga['THREAD_INFO']) else ""
                             })
-                        else
-                            dettagli.append({
-                                "Articolo": cd_ar,
-                                "Categoria": "❌ NON TROVATO",
-                                "Thread Info": ""
-                            })
 
     # Crea DataFrame per la tabella
     df_tabella = pd.DataFrame(dettagli)
