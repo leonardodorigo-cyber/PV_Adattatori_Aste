@@ -253,6 +253,52 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
         percorsi_per_num = defaultdict(list)
         for p in percorsi_trovati:
             percorsi_per_num[len(p)].append(p)
+
+
+
+        # ---------------------------------------------------------------------------
+        # DOWNLOAD EXCEL
+        # ---------------------------------------------------------------------------
+        
+        # Crea DataFrame per export
+        risultati_export = []
+        
+        for p in percorsi_trovati:
+            # Crea una riga con max 5 colonne (adattatore_1, adattatore_2, ecc.)
+            riga = {
+                'adattatore_1': p[0] if len(p) > 0 else None,
+                'adattatore_2': p[1] if len(p) > 1 else None,
+                'adattatore_3': p[2] if len(p) > 2 else None,
+                'adattatore_4': p[3] if len(p) > 3 else None,
+                'adattatore_5': p[4] if len(p) > 4 else None,
+                'num_adattatori': len(p)
+            }
+            risultati_export.append(riga)
+        
+        df_export = pd.DataFrame(risultati_export)
+        
+        # Rimuovi colonne completamente vuote
+        df_export = df_export.dropna(axis=1, how='all')
+        
+        # Converti in Excel
+        from io import BytesIO
+        buffer = BytesIO()
+        with pd.ExcelWriter(buffer, engine='openpyxl') as writer:
+            df_export.to_excel(writer, index=False, sheet_name='Combinazioni')
+        
+        buffer.seek(0)
+        
+        # Bottone download
+        st.download_button(
+            label="📥 Scarica Risultati (Excel)",
+            data=buffer,
+            file_name=f"combinazioni_{attacco_partenza_str}_{attacco_arrivo_str}.xlsx",
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            use_container_width=True
+        )
+
+
+
         
         # Mostra con tabs
         tabs = st.tabs([f"{'⭐' if i==1 else ''} {i} adattator{'i' if i>1 else 'e'} ({len(percorsi_per_num[i])} combinazioni)" 
