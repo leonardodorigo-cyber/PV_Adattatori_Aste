@@ -246,20 +246,12 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
     else:
         st.subheader(f"📊 Risultati: {len(percorsi_trovati)} combinazione trovata")
         
+    # ---------------------------------------------------------------------------
+    # DOWNLOAD EXCEL
+    # ---------------------------------------------------------------------------
     
     if percorsi_trovati:
-        
-        # Raggruppa per numero di articoli
-        percorsi_per_num = defaultdict(list)
-        for p in percorsi_trovati:
-            percorsi_per_num[len(p)].append(p)
-
-
-
-        # ---------------------------------------------------------------------------
-        # DOWNLOAD EXCEL
-        # ---------------------------------------------------------------------------
-        
+    
         # Crea DataFrame per export
         risultati_export = []
         
@@ -282,9 +274,28 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
         
         # Converti in Excel
         from io import BytesIO
+        from openpyxl.utils import get_column_letter
+        
         buffer = BytesIO()
         with pd.ExcelWriter(buffer, engine='openpyxl') as writer:
             df_export.to_excel(writer, index=False, sheet_name='Combinazioni')
+            
+            worksheet = writer.sheets['Combinazioni']
+            
+            # --- colonne Adattatore_* ---
+            colonne_adattatori = [c for c in df_export.columns if c.startswith("Adattatore_")]
+            larghezza_adattatori = 28  # scegli tu (25–30 va benissimo per i codici)
+            
+            for idx, col in enumerate(df_export.columns, start=1):
+                lettera = get_column_letter(idx)
+                if col in colonne_adattatori:
+                    worksheet.column_dimensions[lettera].width = larghezza_adattatori
+                else:
+                    worksheet.column_dimensions[lettera].width = 16  # es. num_adattatori
+            
+            # Optional ma consigliato
+            worksheet.freeze_panes = "A2"
+            worksheet.auto_filter.ref = worksheet.dimensions
         
         buffer.seek(0)
 
@@ -293,13 +304,22 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
         st.download_button(
             label="📥 Scarica Risultati (Excel)",
             data=buffer,
-            file_name=f"combinazioni_{attacco_partenza_str} | {attacco_arrivo_str}.xlsx",
+            file_name=f"combinazioni_[{attacco_partenza_str)]_[{attacco_arrivo_str}].xlsx",
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
             use_container_width=True
         )
         st.markdown("---")
 
-
+    # ---------------------------------------------------------------------------
+    # RISULTATI
+    # ---------------------------------------------------------------------------
+    
+    if percorsi_trovati:
+        
+        # Raggruppa per numero di articoli
+        percorsi_per_num = defaultdict(list)
+        for p in percorsi_trovati:
+            percorsi_per_num[len(p)].append(p)
         
         # Mostra con tabs
         tabs = st.tabs([f"{'⭐' if i==1 else ''} {i} adattator{'i' if i>1 else 'e'} ({len(percorsi_per_num[i])} combinazioni)" 
