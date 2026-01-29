@@ -361,15 +361,15 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
                                 "Thread Info": riga['THREAD_INFO'] if pd.notna(riga['THREAD_INFO']) else ""
                             })
 
-    # Crea DataFrame per la tabella
-    df_tabella = pd.DataFrame(dettagli)
-
-    # Mostra tabella in Streamlit
-    st.table(df_tabella)
+                    # Crea DataFrame per la tabella
+                    df_tabella = pd.DataFrame(dettagli)
+                
+                    # Mostra tabella in Streamlit
+                    st.table(df_tabella)
     
-    #else:
-    #    st.warning("⚠️ Nessuna combinazione trovata con gli attacchi selezionati")
-    #    st.info("💡 Prova ad aumentare il numero massimo di adattatori impiegabili (max=3)")
+    else:
+        st.warning("⚠️ Nessuna combinazione trovata con gli attacchi selezionati")
+        st.info("💡 Prova ad aumentare il numero massimo di adattatori impiegabili (max=3)")
 
 # ---------------------------------------------------------------------------
 # SIDEBAR INFO
