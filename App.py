@@ -263,7 +263,7 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
                 'Adattatore_3': p[2] if len(p) > 2 else None,
                 'Adattatore_4': p[3] if len(p) > 3 else None,
                 'Adattatore_5': p[4] if len(p) > 4 else None,
-                'num_adattatori': len(p)
+                'n_adattatori': len(p)
             }
             risultati_export.append(riga)
         
@@ -284,7 +284,7 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
             
             # --- colonne Adattatore_* ---
             colonne_adattatori = [c for c in df_export.columns if c.startswith("Adattatore_")]
-            larghezza_adattatori = 28  # scegli tu (25–30 va benissimo per i codici)
+            larghezza_adattatori = 20 # scegli tu (25–30 va benissimo per i codici)
             
             for idx, col in enumerate(df_export.columns, start=1):
                 lettera = get_column_letter(idx)
