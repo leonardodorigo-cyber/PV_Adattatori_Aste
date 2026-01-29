@@ -338,13 +338,13 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
                         
                         # Dettagli articoli
                         # st.markdown("**Dettagli:**")
-                        for cd_ar in sequenza_articoli:
-                            riga = df[df["Cd_Ar"] == cd_ar].iloc[0]
+                        # for cd_ar in sequenza_articoli:
+                        #     riga = df[df["Cd_Ar"] == cd_ar].iloc[0]
                             # descr = f" | `{riga['DESCRIZIONE']}`" if pd.notna(riga['DESCRIZIONE']) else ""
                             # st.markdown(f"- {cd_ar} : `{riga['ATTACCO_1']} ↔ {riga['ATTACCO_2']}`  {descr}")
                             # descr = f"`{riga['DESCRIZIONE']}` | " if pd.notna(riga['DESCRIZIONE']) else ""
-                            descr = f"`{riga['Category']}` | " if pd.notna(riga['Category']) else ""
-                            st.markdown(f"- {cd_ar} :  {descr}  `{riga['ATTACCO_1']} ↔ {riga['ATTACCO_2']}`")
+                            # descr = f"`{riga['Category']}` | " if pd.notna(riga['Category']) else ""
+                            # st.markdown(f"- {cd_ar} :  {descr}  `{riga['ATTACCO_1']} ↔ {riga['ATTACCO_2']}`")
 
                         # st.markdown(f"**Sequenza Attacchi:**   `{sequenza_attacchi}`")
 
