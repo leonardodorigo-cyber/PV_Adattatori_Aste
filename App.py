@@ -330,10 +330,10 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
                 for i, sequenza_articoli in enumerate(percorsi_per_num[num_art], 1):
                     sequenza_attacchi = stampa_sequenza_attacchi(sequenza_articoli, df, attacco_partenza)
                     
-                    # with st.expander(f"Combinazione {i}:   {' → '.join(sequenza_articoli)}", expanded=True):
-                    with st.expander(f"Combinazione {i}:   `{sequenza_attacchi}` ", expanded=True):
-                        st.markdown(f"**Codici Articolo:**   `{' → '.join(sequenza_articoli)}`")
-                        # st.markdown(f"**Sequenza Attacchi:**   `{sequenza_attacchi}`")
+                    with st.expander(f"Combinazione {i}:   `{' → '.join(sequenza_articoli)}`", expanded=True):
+                    # with st.expander(f"Combinazione {i}:   `{sequenza_attacchi}` ", expanded=True):
+                        # st.markdown(f"**Codici Articolo:**   `{' → '.join(sequenza_articoli)}`")
+                        st.markdown(f"**Sequenza Attacchi:**   `{sequenza_attacchi}`")
                         
                         # Dettagli articoli
                         st.markdown("**Dettagli:**")
