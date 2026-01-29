@@ -263,14 +263,14 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
         
             # --- Imposta larghezza colonne ---
             colonne_adattatori = [c for c in df_export.columns if c.startswith("Adattatore_")]
-            larghezza_adattatori = 25  # puoi regolare
+            larghezza_adattatori = 18  # puoi regolare
             
             for idx, col in enumerate(df_export.columns, start=1):
                 lettera = get_column_letter(idx)
                 if col in colonne_adattatori:
                     worksheet.column_dimensions[lettera].width = larghezza_adattatori
                 else:
-                    worksheet.column_dimensions[lettera].width = 16
+                    worksheet.column_dimensions[lettera].width = 14
             
             # --- Freeze e filtro ---
             worksheet.freeze_panes = "A2"
