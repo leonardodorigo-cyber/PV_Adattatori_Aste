@@ -168,11 +168,11 @@ with col2:
 
 with col3:
     max_articoli = st.number_input(
-        "⚙️ N° Max Adattatori Combinabili",
+        "⚙️ N° Max Adattatori",
         min_value=1,
         max_value=5,
         value=3,
-        help="Numero massimo di adattatori nel percorso"
+        help="Numero massimo di adattatori che si desidera combinare"
     )
 
 # ---------------------------------------------------------------------------
