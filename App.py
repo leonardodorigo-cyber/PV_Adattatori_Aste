@@ -253,28 +253,32 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
         
         # Converti in Excel
         from io import BytesIO
+        from openpyxl.styles import Alignment
         from openpyxl.utils import get_column_letter
         
         buffer = BytesIO()
         with pd.ExcelWriter(buffer, engine='openpyxl') as writer:
             df_export.to_excel(writer, index=False, sheet_name='Combinazioni')
-            
             worksheet = writer.sheets['Combinazioni']
-            
-            # --- colonne Adattatore_* ---
+        
+            # --- Imposta larghezza colonne ---
             colonne_adattatori = [c for c in df_export.columns if c.startswith("Adattatore_")]
-            larghezza_adattatori = 20 # scegli tu (25–30 va benissimo per i codici)
+            larghezza_adattatori = 25  # puoi regolare
             
             for idx, col in enumerate(df_export.columns, start=1):
                 lettera = get_column_letter(idx)
                 if col in colonne_adattatori:
                     worksheet.column_dimensions[lettera].width = larghezza_adattatori
                 else:
-                    worksheet.column_dimensions[lettera].width = 16  # es. num_adattatori
+                    worksheet.column_dimensions[lettera].width = 16
             
-            # Optional ma consigliato
+            # --- Freeze e filtro ---
             worksheet.freeze_panes = "A2"
             worksheet.auto_filter.ref = worksheet.dimensions
+        
+            # --- Allinea i titoli a sinistra ---
+            for cella in worksheet[1]:  # la prima riga = header
+                cella.alignment = Alignment(horizontal='left')
         
         buffer.seek(0)
 
