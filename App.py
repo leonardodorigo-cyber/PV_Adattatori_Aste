@@ -304,7 +304,7 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
         st.download_button(
             label="📥 Scarica Risultati (Excel)",
             data=buffer,
-            file_name=f"combinazioni_[{attacco_partenza_str)]_[{attacco_arrivo_str}].xlsx",
+            file_name=f"combinazioni_[{attacco_partenza_str}]_[{attacco_arrivo_str}].xlsx",
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
             use_container_width=True
         )
