@@ -287,7 +287,8 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
             df_export.to_excel(writer, index=False, sheet_name='Combinazioni')
         
         buffer.seek(0)
-        
+
+        st.markdown("---")
         # Bottone download
         st.download_button(
             label="📥 Scarica Risultati (Excel)",
@@ -296,7 +297,7 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
             use_container_width=True
         )
-
+        st.markdown("---")
 
 
         
