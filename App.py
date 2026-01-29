@@ -266,11 +266,11 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
         for p in percorsi_trovati:
             # Crea una riga con max 5 colonne (adattatore_1, adattatore_2, ecc.)
             riga = {
-                'adattatore_1': p[0] if len(p) > 0 else None,
-                'adattatore_2': p[1] if len(p) > 1 else None,
-                'adattatore_3': p[2] if len(p) > 2 else None,
-                'adattatore_4': p[3] if len(p) > 3 else None,
-                'adattatore_5': p[4] if len(p) > 4 else None,
+                'Adattatore_1': p[0] if len(p) > 0 else None,
+                'Adattatore_2': p[1] if len(p) > 1 else None,
+                'Adattatore_3': p[2] if len(p) > 2 else None,
+                'Adattatore_4': p[3] if len(p) > 3 else None,
+                'Adattatore_5': p[4] if len(p) > 4 else None,
                 'num_adattatori': len(p)
             }
             risultati_export.append(riga)
