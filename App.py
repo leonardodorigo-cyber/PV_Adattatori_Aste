@@ -159,16 +159,16 @@ def stampa_sequenza_attacchi(sequenza_articoli, df, attacco_partenza):
         nodo2 = (fil2, gen2)
         
         if nodo_necessario == nodo1:
-            sequenza.append(f"{att1} → {att2}")
+            sequenza.append(f"{att1} | {att2}")
             nodo_necessario = (fil2, scambia_genere(gen2))
         elif nodo_necessario == nodo2:
-            sequenza.append(f"{att2} → {att1}")
+            sequenza.append(f"{att2} | {att1}")
             nodo_necessario = (fil1, scambia_genere(gen1))
         else:
-            sequenza.append(f"!!! {att1} → {att2}: ERRORE")
+            sequenza.append(f"!!! {att1} | {att2}: ERRORE")
             nodo_necessario = nodo2
     
-    return " | ".join(sequenza)
+    return " → ".join(sequenza)
 
 # ---------------------------------------------------------------------------
 # INTERFACCIA UTENTE
