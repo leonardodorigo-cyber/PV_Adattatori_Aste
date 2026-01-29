@@ -347,7 +347,8 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
                         df_tabella = pd.DataFrame(dettagli)
                     
                         # Mostra tabella in Streamlit
-                        st.table(df_tabella)
+                        # st.table(df_tabella)
+                        st.table(df_tabella.reset_index(drop=True)) # senza rowID
     
     else:
         st.warning("⚠️ Nessuna combinazione trovata con gli attacchi selezionati")
