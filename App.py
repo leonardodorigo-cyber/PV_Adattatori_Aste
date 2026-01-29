@@ -334,7 +334,7 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
                     with st.expander(f"Combinazione {i}:   `{' → '.join(sequenza_articoli)}`", expanded=True):
                     # with st.expander(f"Combinazione {i}:   `{sequenza_attacchi}` ", expanded=True):
                         # st.markdown(f"**Codici Articolo:**   `{' → '.join(sequenza_articoli)}`")
-                        # st.markdown(f"**Sequenza Attacchi:**   `{sequenza_attacchi}`")
+                        st.markdown(f"**Sequenza Attacchi:**   `{sequenza_attacchi}`")
                         
                         # Dettagli articoli
                         # st.markdown("**Dettagli:**")
@@ -346,7 +346,7 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
                             descr = f"`{riga['Category']}` | " if pd.notna(riga['Category']) else ""
                             st.markdown(f"- {cd_ar} :  {descr}  `{riga['ATTACCO_1']} ↔ {riga['ATTACCO_2']}`")
 
-                        st.markdown(f"**Sequenza Attacchi:**   `{sequenza_attacchi}`")
+                        # st.markdown(f"**Sequenza Attacchi:**   `{sequenza_attacchi}`")
     
     else:
         st.warning("⚠️ Nessuna combinazione trovata con gli attacchi selezionati")
