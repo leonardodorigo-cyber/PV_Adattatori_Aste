@@ -172,7 +172,7 @@ with col3:
         min_value=1,
         max_value=5,
         value=3,
-        help="Numero massimo di adattatori che si desidera combinare"
+        help="Numero massimo di adattatori che si desidera combinare (max 3)"
     )
 
 # ---------------------------------------------------------------------------
