@@ -31,12 +31,17 @@ def carica_dati(file_path=None, uploaded_file=None):
 
     ordine_attacchi = None
     if "FILETTI" in xls.sheet_names:
-        ordine_attacchi = pd.read_excel(
-            xls, 
-            sheet_name="FILETTI",
-            usecols=["ORDINE", "FILETTI STANDARD"]
-        )
+        try:
+            ordine_attacchi = pd.read_excel(xls, sheet_name="FILETTI")
+            # accetta solo se le colonne esistono
+            if {"ORDINE", "FILETTO STANDARD"}.issubset(ordine_attacchi.columns):
+                ordine_attacchi = ordine_attacchi[["ORDINE", "FILETTO STANDARD"]]
+            else:
+                ordine_attacchi = None
     
+        except Exception:
+            ordine_attacchi = None
+        
     # ✅ DEBUG: Stampa info sul DataFrame
     # st.write("=== DEBUG INFO ===")
     # st.write(f"Colonne disponibili: {df.columns.tolist()}")
