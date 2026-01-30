@@ -113,7 +113,7 @@ def trova_percorsi(nodo_corrente, nodo_arrivo, articoli_usati, percorsi_trovati,
         cd_ar, articolo = info_articolo
         
         # evita di riusare lo stesso articolo
-        # if cd_ar in [x[0] for x in articoli_usati]: # se vuoi stampare il codice articolo CON prefisso
+        # if cd_ar in articoli_usati: # se vuoi stampare il codice articolo CON prefisso
         if articolo in articoli_usati: # se vuoi stampare il codice articolo SENZA prefisso
             continue
         
@@ -349,7 +349,8 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
                         dettagli = []
                         
                         for cd_ar in sequenza_articoli:
-                            riga_df = df[df["Cd_Ar"] == cd_ar]
+                            # riga_df = df[df["Cd_Ar"] == cd_ar]  # se vuoi stampare il codice articolo CON prefisso
+                            riga_df = df[df["ARTICOLO"] == articolo]  # se vuoi stampare il codice articolo SENZA prefisso
                             if not riga_df.empty:
                                 riga = riga_df.iloc[0]
                                 dettagli.append({
