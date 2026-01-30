@@ -192,7 +192,7 @@ if ordine_attacchi is not None:
 
     lista_prioritaria = []
 
-    for filetto in ordine_attacchi["ATTACCO"]:
+    for filetto in ordine_attacchi["FILETTI STANDARD"]:
         # Genera ATTACCHI completo per tutti i generi comuni
         for genere in ["M", "F"]:
             attacco_completo = f"{filetto} {genere}"
