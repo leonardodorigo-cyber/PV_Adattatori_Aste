@@ -348,9 +348,12 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
                         # Crea lista dei dettagli
                         dettagli = []
                         
-                        for cd_ar in sequenza_articoli:
+                        # for cd_ar in sequenza_articoli: # se vuoi stampare il codice articolo CON prefisso
+                        for articolo in sequenza_articoli: # se vuoi stampare il codice articolo SENZA prefisso
+                            
                             # riga_df = df[df["Cd_Ar"] == cd_ar]  # se vuoi stampare il codice articolo CON prefisso
                             riga_df = df[df["ARTICOLO"] == articolo]  # se vuoi stampare il codice articolo SENZA prefisso
+                            
                             if not riga_df.empty:
                                 riga = riga_df.iloc[0]
                                 dettagli.append({
