@@ -169,6 +169,14 @@ def stampa_sequenza_attacchi(sequenza_articoli, df, attacco_partenza):
     
     return " → ".join(sequenza)
 
+    # ---------------------------------------------------------------------------
+    # COSTRUZIONE ELENCO ORDINATO
+    # ---------------------------------------------------------------------------
+
+attacchi_ordinati = sorted(anagrafica_attacchi["ATTACCO"].unique())
+
+
+
 # ---------------------------------------------------------------------------
 # INTERFACCIA UTENTE
 # ---------------------------------------------------------------------------
@@ -178,13 +186,13 @@ col1, col2, col3 = st.columns([2, 2, 1])
 with col1:
     attacco_partenza_str = st.selectbox(
         "🔵 Attacco di Partenza (dell'adattatore)",
-        options=sorted(anagrafica_attacchi["ATTACCO"].unique())
+        options=attacchi_ordinati
     )
 
 with col2:
     attacco_arrivo_str = st.selectbox(
         "🔴 Attacco di Arrivo (dell'adattatore)",
-        options=sorted(anagrafica_attacchi["ATTACCO"].unique())
+        options=attacchi_ordinati
     )
 
 with col3:
