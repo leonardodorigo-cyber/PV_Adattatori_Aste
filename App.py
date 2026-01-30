@@ -91,10 +91,10 @@ def costruisci_grafo(df):
         f1, g1 = row['Filetto_1'], row['Genere_1']
         f2, g2 = row['Filetto_2'], row['Genere_2']
         cd_ar = row['Cd_Ar']
-        # art = row['ARTICOLO']
+        art = row['ARTICOLO']
         
-        grafo[(f1, g1)].append(((f2, g2), cd_ar))
-        grafo[(f2, g2)].append(((f1, g1), cd_ar))
+        grafo[(f1, g1)].append(((f2, g2), (cd_ar, art)))
+        grafo[(f2, g2)].append(((f1, g1), (cd_ar, art)))
     
     return grafo
 
@@ -106,8 +106,11 @@ def trova_percorsi(nodo_corrente, nodo_arrivo, articoli_usati, percorsi_trovati,
     if len(articoli_usati) >= max_articoli:
         return
     
-    for vicino, cd_ar in grafo[nodo_corrente]:
-        if cd_ar in articoli_usati:
+    for vicino, info_articolo in grafo[nodo_corrente]:
+        cd_ar, articolo = info_articolo
+        
+        # evita di riusare lo stesso Cd_Ar
+        if cd_ar in [x[0] for x in articoli_usati]:
             continue
         
         nuovo_nodo_corrente = (vicino[0], scambia_genere(vicino[1]))
