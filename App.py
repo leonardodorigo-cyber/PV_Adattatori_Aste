@@ -184,6 +184,7 @@ attacchi_disponibili = anagrafica_attacchi["ATTACCO"].unique().tolist()
 
 if ordine_attacchi is not None:
     ordine_attacchi = ordine_attacchi.dropna(subset=["ATTACCO"])
+    ordine_attacchi["ATTACCO"] = ordine_attacchi["ATTACCO"].str.strip()
 
     lista_prioritaria = []
 
