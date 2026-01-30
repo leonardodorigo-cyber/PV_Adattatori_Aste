@@ -114,8 +114,8 @@ def trova_percorsi(nodo_corrente, nodo_arrivo, articoli_usati, percorsi_trovati,
         
         # evita di riusare lo stesso articolo
         # if cd_ar in [x[0] for x in articoli_usati]: # se vuoi stampare il codice articolo CON prefisso
-        #if articolo in [x[0] for x in articoli_usati]: # se vuoi stampare il codice articolo SENZA prefisso
-        #    continue
+        if articolo in articoli_usati: # se vuoi stampare il codice articolo SENZA prefisso
+            continue
         
         nuovo_nodo_corrente = (vicino[0], scambia_genere(vicino[1]))
         # articoli_usati.append(cd_ar) # se vuoi stampare il codice articolo CON prefisso
