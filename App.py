@@ -32,7 +32,8 @@ def carica_dati(file_path=None, uploaded_file=None):
     ordine_attacchi = None
     if "ORDINE_ATTACCHI" in xls.sheet_names:
         ordine_attacchi = pd.read_excel(
-            xls, sheet_name=1,
+            xls, 
+            sheet_name=1,
             # sheet_name="FILETTI",
             usecols=["ORDINE", "ATTACCO"]
         )
@@ -177,7 +178,7 @@ def stampa_sequenza_attacchi(sequenza_articoli, df, attacco_partenza):
     # COSTRUZIONE ELENCO ORDINATO ATTACCHI
     # ---------------------------------------------------------------------------
 
-attacchi_ordinati = sorted(anagrafica_attacchi["ATTACCO"].unique())
+# attacchi_ordinati = sorted(anagrafica_attacchi["ATTACCO"].unique())
 
 attacchi_disponibili = anagrafica_attacchi["ATTACCO"].unique().tolist()
 
