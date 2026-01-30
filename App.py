@@ -34,7 +34,7 @@ def carica_dati(file_path=None, uploaded_file=None):
         ordine_attacchi = pd.read_excel(
             xls, 
             sheet_name="FILETTI",
-            usecols=["ORDINE", "FILETTO STANDARD"]
+            usecols=["ORDINE", "FILETTI STANDARD"]
         )
     
     # ✅ DEBUG: Stampa info sul DataFrame
