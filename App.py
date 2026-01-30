@@ -33,8 +33,7 @@ def carica_dati(file_path=None, uploaded_file=None):
     if "FILETTI" in xls.sheet_names:
         ordine_attacchi = pd.read_excel(
             xls, 
-            sheet_name=1,
-            # sheet_name="FILETTI",
+            sheet_name="FILETTI",
             usecols=["ORDINE", "FILETTO STANDARD"]
         )
     
