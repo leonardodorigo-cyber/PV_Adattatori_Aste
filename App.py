@@ -18,14 +18,21 @@ st.markdown("---")
 
 @st.cache_data
 def carica_dati(file_path=None, uploaded_file=None):
+    
     """Carica i dati da file locale o da upload"""
     if uploaded_file is not None:
-        df = pd.read_excel(uploaded_file)
+        xls = pd.ExcelFile(uploaded_file)
     elif file_path is not None and os.path.exists(file_path):
-        df = pd.read_excel(file_path)
+        xls = pd.ExcelFile(file_path)
     else:
         return None, None
-  
+
+    df = pd.read_excel(xls, sheet_name=0)
+
+    ordine_attacchi = None
+    if "ORDINE_ATTACCHI" in xls.sheet_names:
+        ordine_attacchi = pd.read_excel(xls, sheet_name="ORDINE_ATTACCHI")
+    
     # ✅ DEBUG: Stampa info sul DataFrame
     # st.write("=== DEBUG INFO ===")
     # st.write(f"Colonne disponibili: {df.columns.tolist()}")
@@ -54,7 +61,7 @@ def carica_dati(file_path=None, uploaded_file=None):
           .reset_index(drop=True)
     )
     
-    return df, anagrafica_attacchi
+    return df, anagrafica_attacchi, ordine_attacchi
 
 # Tentativo di caricare il file predefinito
 FILE_EXCEL = "DW_lista_adattatori_completa.xlsx"
