@@ -190,7 +190,7 @@ if ordine_attacchi is not None:
 
     for filetto in ordine_attacchi["ATTACCO"]:
         # Genera ATTACCHI completo per tutti i generi comuni
-        for genere in ["M", "F", "Altro"]:
+        for genere in ["M", "F"]:
             attacco_completo = f"{filetto} {genere}"
             lista_prioritaria.append(attacco_completo)
 
