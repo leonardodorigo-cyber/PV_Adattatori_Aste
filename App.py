@@ -122,11 +122,17 @@ def stampa_sequenza_attacchi(sequenza_articoli, df, attacco_partenza):
     sequenza = []
     nodo_necessario = attacco_partenza
     
-    for cd_ar in sequenza_articoli:
-        riga = df[df["Cd_Ar"] == cd_ar]
+    for cd_ar in sequenza_articoli: # se vuoi stampare il codice articolo CON prefisso
+    for articolo in sequenza_articoli: # se vuoi stampare il codice articolo SENZA prefisso
+
+        # Recupero riga articolo dal DataFrame
+        # riga = df[df["Cd_Ar"] == cd_ar] # se vuoi stampare il codice articolo CON prefisso
+        riga = df[df["ARTICOLO"] == articolo] # se vuoi stampare il codice articolo SENZA prefisso
 
         if riga.empty:
-            return f"❌ ERRORE: Codice articolo {cd_ar} non trovato nel dataset"
+            # return f"❌ ERRORE: Codice articolo {cd_ar} non trovato nel dataset" # se vuoi stampare il codice articolo CON prefisso
+            return f"❌ ERRORE: Codice articolo {articolo} non trovato nel dataset" # se vuoi stampare il codice articolo SENZA prefisso
+        
         riga = riga.iloc[0]
         
         fil1 = riga["Filetto_1"]
@@ -284,8 +290,9 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
                 cella.alignment = Alignment(horizontal='left')
         
         buffer.seek(0)
-
+        
         st.markdown("---")
+        
         # Bottone download
         st.download_button(
             label="📥 Scarica Risultati (Excel)",
