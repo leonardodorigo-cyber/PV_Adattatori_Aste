@@ -211,13 +211,15 @@ col1, col2, col3 = st.columns([2, 2, 1])
 with col1:
     attacco_partenza_str = st.selectbox(
         "🔵 Attacco di Partenza (dell'adattatore)",
-        options=attacchi_ordinati
+        options=attacchi_ordinati,
+        index=18 if len(attacchi_ordinati) > 17 else 0  # fallback se lista troppo corta
     )
 
 with col2:
     attacco_arrivo_str = st.selectbox(
         "🔴 Attacco di Arrivo (dell'adattatore)",
-        options=attacchi_ordinati
+        options=attacchi_ordinati,
+        index=18 if len(attacchi_ordinati) > 17 else 0  # fallback se lista troppo corta
     )
 
 with col3:
