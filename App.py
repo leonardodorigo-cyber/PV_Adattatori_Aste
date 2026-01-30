@@ -31,7 +31,11 @@ def carica_dati(file_path=None, uploaded_file=None):
 
     ordine_attacchi = None
     if "ORDINE_ATTACCHI" in xls.sheet_names:
-        ordine_attacchi = pd.read_excel(xls, sheet_name="ORDINE_ATTACCHI")
+        ordine_attacchi = pd.read_excel(
+            xls,
+            sheet_name="ORDINE_ATTACCHI",
+            usecols=["ORDINE", "ATTACCO"]
+        )
     
     # ✅ DEBUG: Stampa info sul DataFrame
     # st.write("=== DEBUG INFO ===")
