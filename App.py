@@ -115,6 +115,7 @@ def trova_percorsi(nodo_corrente, nodo_arrivo, articoli_usati, percorsi_trovati,
         
         nuovo_nodo_corrente = (vicino[0], scambia_genere(vicino[1]))
         articoli_usati.append(cd_ar)
+        articoli_usati.append(articolo)
         trova_percorsi(nuovo_nodo_corrente, nodo_arrivo, articoli_usati, percorsi_trovati, max_articoli, grafo)
         articoli_usati.pop()
 
