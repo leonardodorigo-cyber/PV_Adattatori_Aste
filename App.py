@@ -122,7 +122,7 @@ def stampa_sequenza_attacchi(sequenza_articoli, df, attacco_partenza):
     sequenza = []
     nodo_necessario = attacco_partenza
     
-    for cd_ar in sequenza_articoli: # se vuoi stampare il codice articolo CON prefisso
+    # for cd_ar in sequenza_articoli: # se vuoi stampare il codice articolo CON prefisso
     for articolo in sequenza_articoli: # se vuoi stampare il codice articolo SENZA prefisso
 
         # Recupero riga articolo dal DataFrame
