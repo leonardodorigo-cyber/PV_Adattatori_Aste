@@ -35,7 +35,7 @@ def carica_dati(file_path=None, uploaded_file=None):
             xls, 
             sheet_name=1,
             # sheet_name="FILETTI",
-            usecols=["ORDINE", "ATTACCO"]
+            usecols=["ORDINE", "FILETTO STANDARD"]
         )
     
     # ✅ DEBUG: Stampa info sul DataFrame
@@ -125,13 +125,13 @@ def trova_percorsi(nodo_corrente, nodo_arrivo, articoli_usati, percorsi_trovati,
         cd_ar, articolo = info_articolo
         
         # evita di riusare lo stesso articolo
-        # if cd_ar in articoli_usati: # se vuoi stampare il codice articolo CON prefisso
-        if articolo in articoli_usati: # se vuoi stampare il codice articolo SENZA prefisso
+        if cd_ar in articoli_usati: # se vuoi stampare il codice articolo CON prefisso
+        # if articolo in articoli_usati: # se vuoi stampare il codice articolo SENZA prefisso
             continue
         
         nuovo_nodo_corrente = (vicino[0], scambia_genere(vicino[1]))
-        # articoli_usati.append(cd_ar) # se vuoi stampare il codice articolo CON prefisso
-        articoli_usati.append(articolo) # se vuoi stampare il codice articolo SENZA prefisso
+        articoli_usati.append(cd_ar) # se vuoi stampare il codice articolo CON prefisso
+        # articoli_usati.append(articolo) # se vuoi stampare il codice articolo SENZA prefisso
         trova_percorsi(nuovo_nodo_corrente, nodo_arrivo, articoli_usati, percorsi_trovati, max_articoli, grafo)
         articoli_usati.pop()
 
@@ -139,16 +139,16 @@ def stampa_sequenza_attacchi(sequenza_articoli, df, attacco_partenza):
     sequenza = []
     nodo_necessario = attacco_partenza
     
-    # for cd_ar in sequenza_articoli: # se vuoi stampare il codice articolo CON prefisso
-    for articolo in sequenza_articoli: # se vuoi stampare il codice articolo SENZA prefisso
+    for cd_ar in sequenza_articoli: # se vuoi stampare il codice articolo CON prefisso
+    # for articolo in sequenza_articoli: # se vuoi stampare il codice articolo SENZA prefisso
 
         # Recupero riga articolo dal DataFrame
-        # riga = df[df["Cd_Ar"] == cd_ar] # se vuoi stampare il codice articolo CON prefisso
-        riga = df[df["ARTICOLO"] == articolo] # se vuoi stampare il codice articolo SENZA prefisso
+        riga = df[df["Cd_Ar"] == cd_ar] # se vuoi stampare il codice articolo CON prefisso
+        # riga = df[df["ARTICOLO"] == articolo] # se vuoi stampare il codice articolo SENZA prefisso
 
         if riga.empty:
-            # return f"❌ ERRORE: Codice articolo {cd_ar} non trovato nel dataset" # se vuoi stampare il codice articolo CON prefisso
-            return f"❌ ERRORE: Codice articolo {articolo} non trovato nel dataset" # se vuoi stampare il codice articolo SENZA prefisso
+            return f"❌ ERRORE: Codice articolo {cd_ar} non trovato nel dataset" # se vuoi stampare il codice articolo CON prefisso
+            # return f"❌ ERRORE: Codice articolo {articolo} non trovato nel dataset" # se vuoi stampare il codice articolo SENZA prefisso
         
         riga = riga.iloc[0]
         
@@ -390,17 +390,17 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
                         # Crea lista dei dettagli
                         dettagli = []
                         
-                        # for cd_ar in sequenza_articoli: # se vuoi stampare il codice articolo CON prefisso
-                        for articolo in sequenza_articoli: # se vuoi stampare il codice articolo SENZA prefisso
+                        for cd_ar in sequenza_articoli: # se vuoi stampare il codice articolo CON prefisso
+                        # for articolo in sequenza_articoli: # se vuoi stampare il codice articolo SENZA prefisso
                             
-                            # riga_df = df[df["Cd_Ar"] == cd_ar]  # se vuoi stampare il codice articolo CON prefisso
-                            riga_df = df[df["ARTICOLO"] == articolo]  # se vuoi stampare il codice articolo SENZA prefisso
+                            riga_df = df[df["Cd_Ar"] == cd_ar]  # se vuoi stampare il codice articolo CON prefisso
+                            # riga_df = df[df["ARTICOLO"] == articolo]  # se vuoi stampare il codice articolo SENZA prefisso
                             
                             if not riga_df.empty:
                                 riga = riga_df.iloc[0]
                                 dettagli.append({
-                                    # "Articolo": cd_ar, # se vuoi stampare il codice articolo CON prefisso
-                                    "Articolo": articolo, # se vuoi stampare il codice articolo SENZA prefisso
+                                    "Articolo": cd_ar, # se vuoi stampare il codice articolo CON prefisso
+                                    # "Articolo": articolo, # se vuoi stampare il codice articolo SENZA prefisso
                                     "Categoria": riga['Category'] if pd.notna(riga['Category']) else "",
                                     "Thread Info": riga['THREAD_INFO'] if pd.notna(riga['THREAD_INFO']) else ""
                                 })
