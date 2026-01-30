@@ -110,7 +110,8 @@ def trova_percorsi(nodo_corrente, nodo_arrivo, articoli_usati, percorsi_trovati,
         cd_ar, articolo = info_articolo
         
         # evita di riusare lo stesso Cd_Ar
-        if cd_ar in [x[0] for x in articoli_usati]:
+        # if cd_ar in [x[0] for x in articoli_usati]:
+        if articolo in [x[0] for x in articoli_usati]:
             continue
         
         nuovo_nodo_corrente = (vicino[0], scambia_genere(vicino[1]))
