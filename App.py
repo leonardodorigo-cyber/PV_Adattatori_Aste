@@ -170,12 +170,25 @@ def stampa_sequenza_attacchi(sequenza_articoli, df, attacco_partenza):
     return " → ".join(sequenza)
 
     # ---------------------------------------------------------------------------
-    # COSTRUZIONE ELENCO ORDINATO
+    # COSTRUZIONE ELENCO ORDINATO ATTACCHI
     # ---------------------------------------------------------------------------
 
 attacchi_ordinati = sorted(anagrafica_attacchi["ATTACCO"].unique())
 
+attacchi_disponibili = anagrafica_attacchi["ATTACCO"].unique().tolist()
 
+if ordine_attacchi is not None:
+    ordine_attacchi = ordine_attacchi.dropna(subset=["ATTACCO"])
+
+    lista_prioritaria = ordine_attacchi["ATTACCO"].tolist()
+
+    # prima quelli ordinati, poi gli altri
+    attacchi_ordinati = (
+        [a for a in lista_prioritaria if a in attacchi_disponibili] +
+        sorted([a for a in attacchi_disponibili if a not in lista_prioritaria])
+    )
+else:
+    attacchi_ordinati = sorted(attacchi_disponibili)
 
 # ---------------------------------------------------------------------------
 # INTERFACCIA UTENTE
