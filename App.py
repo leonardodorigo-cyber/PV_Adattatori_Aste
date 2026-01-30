@@ -185,7 +185,13 @@ attacchi_disponibili = anagrafica_attacchi["ATTACCO"].unique().tolist()
 if ordine_attacchi is not None:
     ordine_attacchi = ordine_attacchi.dropna(subset=["ATTACCO"])
 
-    lista_prioritaria = ordine_attacchi["ATTACCO"].tolist()
+    lista_prioritaria = []
+
+    for filetto in ordine_attacchi["ATTACCO"]:
+        # Genera ATTACCHI completo per tutti i generi comuni
+        for genere in ["M", "F", "Altro"]:
+            attacco_completo = f"{filetto} {genere}"
+            lista_prioritaria.append(attacco_completo)
 
     # prima quelli ordinati, poi gli altri
     attacchi_ordinati = (
