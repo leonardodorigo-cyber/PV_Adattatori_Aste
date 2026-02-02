@@ -9,7 +9,7 @@ st.set_page_config(page_title="Ricerca Percorsi Adattatori", layout="wide")
 # ---------------------------------------------------------------------------
 # TITOLO
 # ---------------------------------------------------------------------------
-st.title("🔧 Ricerca Adattatori Aste Perforatrici Teleguidate")
+st.title("🔧 Drilling Adapter Finder")
 st.markdown("---")
 
 # ---------------------------------------------------------------------------
