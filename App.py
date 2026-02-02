@@ -81,6 +81,10 @@ if df is None:
     st.error(f"❌ File predefinito '{FILE_EXCEL}' non trovato. L'app si interrompe.")
     st.stop()
 
+if ordine_attacchi is None:
+    st.warning("⚠️ Foglio 'FILETTI' non trovato: ordinamento attacchi standard disattivato")
+    ordine_attacchi = anagrafica_attacchi
+    
 # Se il file esiste, procedi
 st.success(f"✅ Database caricato: {len(df)} adattatori disponibili")
 
