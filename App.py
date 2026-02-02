@@ -445,6 +445,11 @@ with st.sidebar:
     2. Seleziona attacco di arrivo 
     3. Imposta n° max adattori impiegabili
     4. Clicca "RICERCA ADATTATORI"
+
+    **Risultati:**
+    - Verranno mostrate tutte le combinazioni possibili di adattatori.
+    - Ogni combinazione mostra la **sequenza degli attacchi** e i **dettagli di ciascun adattatore**.
+    - È possibile scaricare tutte le combinazioni in un **file Excel** pronto all’uso.
     
     **Algoritmo:**
     - DFS (Depth-First Search)
