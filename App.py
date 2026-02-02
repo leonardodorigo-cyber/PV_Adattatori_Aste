@@ -32,8 +32,8 @@ def carica_dati(file_path=None, uploaded_file=None):
     ordine_attacchi = None
     if "FILETTI" in xls.sheet_names:
         try:
-            # ordine_attacchi = pd.read_excel(xls, sheet_name=1)
-            ordine_attacchi = pd.read_excel(xls, sheet_name="FILETTI")
+            ordine_attacchi = pd.read_excel(xls, sheet_name=1)
+            # ordine_attacchi = pd.read_excel(xls, sheet_name="FILETTI")
             # accetta solo se le colonne esistono
             if {"ORDINE", "FILETTI STANDARD"}.issubset(ordine_attacchi.columns):
                 ordine_attacchi = ordine_attacchi[["ORDINE", "FILETTI STANDARD"]]
