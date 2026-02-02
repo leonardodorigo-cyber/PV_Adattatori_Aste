@@ -87,7 +87,7 @@ if df is None:
 
 if not filetti_trovati:
     st.warning(
-        "⚠️ Foglio **'FILETTI'** non trovato o non valido.\n\n"
+        "⚠️ Foglio **'FILETTI STANDARD'** non trovato o non valido.\n\n"
         "➡️ Gli attacchi verranno mostrati in **ordine alfabetico**."
     )
 
