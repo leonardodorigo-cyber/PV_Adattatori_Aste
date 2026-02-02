@@ -78,7 +78,7 @@ def carica_dati(file_path=None, uploaded_file=None):
 
 # Tentativo di caricare il file predefinito
 FILE_EXCEL = "DW_lista_adattatori_completa.xlsx"
-df, anagrafica_attacchi, ordine_attacchi = carica_dati(file_path=FILE_EXCEL)
+df, anagrafica_attacchi, ordine_attacchi, filetti_trovati = carica_dati(file_path=FILE_EXCEL)
 
 # Se il file predefinito non esiste, blocca l'app
 if df is None:
