@@ -59,7 +59,9 @@ def carica_dati(file_path=None, uploaded_file=None):
     # Creazione colonne "ATTACCO_1" e "ATTACCO_2"
     df["ATTACCO_1"] = df["Filetto_1"].astype(str).str.strip() + " " + df["Genere_1"].astype(str).str.strip()
     df["ATTACCO_2"] = df["Filetto_2"].astype(str).str.strip() + " " + df["Genere_2"].astype(str).str.strip()
-
+    
+    # Creazione THREAD_INFO come in Excel
+    df["THREAD_INFO"] = df["ATTACCO_1"] + " / " + df["ATTACCO_2"]
     
     # Pulizia nomi adattatori
     df["Attacco_1"] = df["ATTACCO_1"].str.replace(r"\s*\(.*?\)", "", regex=True)
