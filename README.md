@@ -11,15 +11,17 @@ App Streamlit per trovare combinazioni di adattatori per le aste di perforatrici
 
 ## 📋 Requisiti del File Excel
 
-Il file Excel deve contenere le seguenti colonne:
+Il file Excel deve contenere le seguenti colonne nel primo foglio:
 - `Cd_Ar` - Codice articolo
-- `ATTACCO_1` - Primo attacco
-- `ATTACCO_2` - Secondo attacco
 - `Filetto_1` - Filetto primo attacco
 - `Filetto_2` - Filetto secondo attacco
 - `Genere_1` - Genere primo attacco (M/F)
 - `Genere_2` - Genere secondo attacco (M/F)
-- `DESCRIZIONE` - Descrizione (opzionale)
+- `Category` - Categoria articolo
+
+E un secondo foglio denominato "FILETTI" contenente:
+- `ORDINE` - ordine di visualizzazione dei filetti
+- `FILETTI STANDARD` - lista ordinata dei filetti per la visualizzazione
 
 ## 🚀 Come usare l'app
 
@@ -28,7 +30,8 @@ Il file Excel deve contenere le seguenti colonne:
 3. Seleziona l'attacco di arrivo
 4. Imposta il numero massimo di articoli
 5. Clicca "CERCA PERCORSI"
-6. (Opzionale) Carica un file Excel diverso se necessario
+6. Propone un file Excel da scaricare con i risultati
+7. Propone i risultati sulla schermata
 
 ## 💻 Installazione locale
 
