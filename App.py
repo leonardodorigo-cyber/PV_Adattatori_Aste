@@ -425,7 +425,7 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
                                 dettagli.append({
                                     "Articolo": cd_ar, # se vuoi stampare il codice articolo CON prefisso
                                     # "Articolo": articolo, # se vuoi stampare il codice articolo SENZA prefisso
-                                    "Categoria": riga['Category'] if pd.notna(riga['Category']) else "",
+                                    "Categoria": riga['Category'].str.strip() if pd.notna(riga['Category']) else "",
                                     "Thread Info": riga['THREAD_INFO'] if pd.notna(riga['THREAD_INFO']) else ""
                                 })
     
