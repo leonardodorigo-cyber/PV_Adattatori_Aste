@@ -38,9 +38,13 @@ def carica_dati(file_path=None, uploaded_file=None):
                 ordine_attacchi = ordine_attacchi[["ORDINE", "FILETTI STANDARD"]]
             else:
                 ordine_attacchi = None
+                filetti_trovati = False
     
         except Exception:
             ordine_attacchi = None
+            filetti_trovati = False
+    else:
+        filetti_trovati = False
         
     # ✅ DEBUG: Stampa info sul DataFrame
     # st.write("=== DEBUG INFO ===")
@@ -70,7 +74,7 @@ def carica_dati(file_path=None, uploaded_file=None):
           .reset_index(drop=True)
     )
     
-    return df, anagrafica_attacchi, ordine_attacchi
+    return df, anagrafica_attacchi, ordine_attacchi, filetti_trovati
 
 # Tentativo di caricare il file predefinito
 FILE_EXCEL = "DW_lista_adattatori_completa.xlsx"
