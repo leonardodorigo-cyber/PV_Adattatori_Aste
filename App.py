@@ -48,13 +48,18 @@ def carica_dati(file_path=None, uploaded_file=None):
     else:
         filetti_trovati = False
         
-    # ✅ DEBUG: Stampa info sul DataFrame
+    ## ✅ DEBUG: Stampa info sul DataFrame
     # st.write("=== DEBUG INFO ===")
     # st.write(f"Colonne disponibili: {df.columns.tolist()}")
     # st.write(f"Righe totali: {len(df)}")
     # st.write(f"Righe con Cd_Ar NaN: {df['Cd_Ar'].isna().sum()}")
     # st.write(f"Prime 5 righe Cd_Ar:\n{df['Cd_Ar'].head()}")
     # st.write("==================")
+
+    # Creazione colonne "ATTACCO_1" e "ATTACCO_2"
+    df["ATTACCO_1"] = df["Filetto_1"].astype(str).str.strip() + " " + df["Genere_1"].astype(str).str.strip()
+    df["ATTACCO_2"] = df["Filetto_2"].astype(str).str.strip() + " " + df["Genere_2"].astype(str).str.strip()
+
     
     # Pulizia nomi adattatori
     df["Attacco_1"] = df["ATTACCO_1"].str.replace(r"\s*\(.*?\)", "", regex=True)
