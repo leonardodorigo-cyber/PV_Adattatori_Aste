@@ -450,6 +450,7 @@ with st.sidebar:
     - Verranno mostrate tutte le combinazioni possibili.
     - Ogni combinazione mostra la **sequenza degli attacchi** e i dettagli di ciascun articolo impiegato.
     - È possibile scaricare tutte le combinazioni in un **file Excel**.
+    """)
     
     st.markdown("---")
     st.markdown("💡 **Nota:** Se si osservano errori nelle combinazioni o articoli mancanti si prega di contattare l'admin.")
