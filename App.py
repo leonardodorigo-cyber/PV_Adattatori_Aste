@@ -195,6 +195,7 @@ def stampa_sequenza_attacchi(sequenza_articoli, df, attacco_partenza):
 # attacchi_ordinati = sorted(anagrafica_attacchi["ATTACCO"].unique())
 
 attacchi_disponibili = anagrafica_attacchi["ATTACCO"].unique().tolist()
+attacchi_disponibili = [a for a in attacchi_disponibili if isinstance(a, str) and a.strip() != ""]
 
 if ordine_attacchi is not None and not ordine_attacchi.empty:
     ordine_attacchi = ordine_attacchi.dropna(subset=["FILETTI STANDARD"])
