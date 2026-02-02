@@ -243,7 +243,8 @@ with col3:
     max_articoli = st.number_input(
         "⚙️ N° Max Adattatori",
         min_value=1,
-        max_value=5,
+        max_value=3,
+        options=[1,2,3];
         value=3,
         help="Numero massimo di adattatori che si desidera combinare (max 3)"
     )
