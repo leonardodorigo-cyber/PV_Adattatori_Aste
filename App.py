@@ -37,6 +37,7 @@ def carica_dati(file_path=None, uploaded_file=None):
             # accetta solo se le colonne esistono
             if {"ORDINE", "FILETTI STANDARD"}.issubset(ordine_attacchi.columns):
                 ordine_attacchi = ordine_attacchi[["ORDINE", "FILETTI STANDARD"]]
+                filetti_trovati = True
             else:
                 ordine_attacchi = None
                 filetti_trovati = False
