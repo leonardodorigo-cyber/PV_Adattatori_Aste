@@ -190,7 +190,7 @@ def stampa_sequenza_attacchi(sequenza_articoli, df, attacco_partenza):
 
 attacchi_disponibili = anagrafica_attacchi["ATTACCO"].unique().tolist()
 
-if ordine_attacchi is not None:
+if ordine_attacchi is not None and not ordine_attacchi.empty:
     ordine_attacchi = ordine_attacchi.dropna(subset=["FILETTI STANDARD"])
     ordine_attacchi["FILETTI STANDARD"] = ordine_attacchi["FILETTI STANDARD"].str.strip()
 
