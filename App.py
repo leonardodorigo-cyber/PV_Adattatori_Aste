@@ -447,15 +447,9 @@ with st.sidebar:
     4. Clicca "RICERCA ADATTATORI"
 
     **Risultati:**
-    - Verranno mostrate tutte le combinazioni possibili di adattatori.
-    - Ogni combinazione mostra la **sequenza degli attacchi** e i **dettagli di ciascun adattatore**.
-    - È possibile scaricare tutte le combinazioni in un **file Excel** pronto all’uso.
-    
-    **Algoritmo:**
-    - DFS (Depth-First Search)
-    - Ricerca fino a {max_articoli} articoli
-    - Compatibilità genere (M↔F)
-    """)
+    - Verranno mostrate tutte le combinazioni possibili.
+    - Ogni combinazione mostra la **sequenza degli attacchi** e i dettagli di ciascun articolo impiegato.
+    - È possibile scaricare tutte le combinazioni in un **file Excel**.
     
     st.markdown("---")
-    st.markdown("💡 **Nota:** Il database è precaricato ma può essere aggiornato caricando un nuovo file Excel.")
+    st.markdown("💡 **Nota:** Se si osservano errori nelle combinazioni o articoli mancanti si prega di contattare l'admin.")
