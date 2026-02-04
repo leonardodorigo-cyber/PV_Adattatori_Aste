@@ -156,10 +156,10 @@ uploaded_giac = st.file_uploader(
 
 df_giac = carica_giacenze(uploaded_giac)
 
-if df_giac is not None:
-    st.success(f"✅ File giacenze caricato: {len(df_giac)} righe")
-else:
-    st.info("ℹ️ Nessun file giacenze caricato")
+# if df_giac is not None:
+#     st.success(f"✅ File giacenze caricato: {len(df_giac)} righe")
+# else:
+#     st.info("ℹ️ Nessun file giacenze caricato")
 
 # ---------------------------------------------------------------------------
 # FUNZIONI
