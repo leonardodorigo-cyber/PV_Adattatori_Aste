@@ -139,7 +139,7 @@ if not filetti_trovati:
     )
 
 # Se il file esiste, procedi
-st.success(f"✅ Database caricato: {len(df)} adattatori disponibili")
+# st.success(f"✅ Database caricato: {len(df)} adattatori disponibili")
 
 # ---------------------------------------------------------------------------
 # CARICAMENTO GIACENZE
