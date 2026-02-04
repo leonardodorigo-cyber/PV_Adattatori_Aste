@@ -506,22 +506,18 @@ with st.sidebar:
 
     # Database principale
     if df is not None:
-        st.success(f"Database adattatori caricato ({len(df)})")
+        st.success(f"Database adattatori caricato ({len(df)} righe)")
     else:
         st.error("Database adattatori NON caricato")
 
     # Giacenze (opzionale)
     if df_giac is not None:
-        st.success(f"Giacenze caricate ({len(df_giac)})")
+        st.success(f"Giacenze caricate ({len(df_giac) righe})")
     else:
         st.info("Giacenze non caricate")
         
     st.header("ℹ️ Informazioni")
     st.markdown(f"""
-    **Dataset caricato:**
-    - {len(df)} adattatori
-    - {len(anagrafica_attacchi)} attacchi unici
-    
     **Come usare:**
     1. Seleziona attacco di partenza (dell'adattatore desiderato)
     2. Seleziona attacco di arrivo 
