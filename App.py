@@ -104,6 +104,19 @@ if not filetti_trovati:
 st.success(f"✅ Database caricato: {len(df)} adattatori disponibili")
 
 # ---------------------------------------------------------------------------
+# CARICAMENTO GIACENZE
+# ---------------------------------------------------------------------------
+
+st.markdown("---")
+st.subheader("📦 Disponibilità Magazzino (opzionale)")
+
+uploaded_giac = st.file_uploader(
+    "Carica file Excel con giacenze (opzionale)",
+    type=["xlsx"],
+    help="Colonne richieste: Cd_Ar, Cd_MG, Giacenza, DispImmediata, Disp"
+)
+
+# ---------------------------------------------------------------------------
 # FUNZIONI
 # ---------------------------------------------------------------------------
 def scambia_genere(genere):
