@@ -151,7 +151,7 @@ st.subheader("📦 Disponibilità Magazzino (opzionale)")
 uploaded_giac = st.file_uploader(
     "Carica file Excel con giacenze (opzionale)",
     type=["xlsx"],
-    help="Colonne richieste: Cd_Ar, Cd_MG, Giacenza, DispImmediata, Disp"
+    help="Colonne richieste: Cd_AR, Cd_MG, GIacenza, DispImmediata, Disp"
 )
 
 df_giac = carica_giacenze(uploaded_giac)
@@ -255,9 +255,9 @@ def stampa_sequenza_attacchi(sequenza_articoli, df, attacco_partenza):
     
     return " → ".join(sequenza)
 
-    # ---------------------------------------------------------------------------
-    # COSTRUZIONE ELENCO ORDINATO ATTACCHI
-    # ---------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
+# COSTRUZIONE ELENCO ORDINATO ATTACCHI
+# ---------------------------------------------------------------------------
 
 # attacchi_ordinati = sorted(anagrafica_attacchi["ATTACCO"].unique())
 
