@@ -145,7 +145,7 @@ if not filetti_trovati:
 # CARICAMENTO GIACENZE
 # ---------------------------------------------------------------------------
 
-st.markdown("---")
+# st.markdown("---")
 st.subheader("📦 Disponibilità Magazzino (opzionale)")
 
 uploaded_giac = st.file_uploader(
