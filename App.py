@@ -506,7 +506,7 @@ with st.sidebar:
 
     # Database principale
     if df is not None:
-        st.success(f"Database adattatori caricato ({len(df)} righe)")
+        st.success(f"Database caricato ({len(df)} righe)")
     else:
         st.error("Database adattatori NON caricato")
 
