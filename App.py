@@ -13,7 +13,7 @@ st.title("🔧 Drilling Adapter Finder")
 st.markdown("---")
 
 # ---------------------------------------------------------------------------
-# CARICAMENTO DATI
+# FUNZIONI CARICAMENTO DATI
 # ---------------------------------------------------------------------------
 
 @st.cache_data
@@ -84,6 +84,44 @@ def carica_dati(file_path=None, uploaded_file=None):
     )
     
     return df, anagrafica_attacchi, ordine_attacchi, filetti_trovati
+
+@st.cache_data
+def carica_giacenze(uploaded_file):
+    if uploaded_file is None:
+        return None
+
+    try:
+        df_giac = pd.read_excel(uploaded_file)
+
+        colonne_richieste = {
+            "Cd_Ar",
+            "Cd_MG",
+            "Giacenza",
+            "DispImmediata",
+            "Disp"
+        }
+
+        colonne_presenti = set(df_giac.columns)
+
+        if not colonne_richieste.issubset(colonne_presenti):
+            colonne_mancanti = colonne_richieste - colonne_presenti
+            st.error(
+                f"❌ File giacenze non valido. Colonne mancanti: {', '.join(colonne_mancanti)}"
+            )
+            return None
+
+        # Pulizia minima
+        df_giac["Cd_Ar"] = df_giac["Cd_Ar"].astype(str).str.strip()
+
+        return df_giac
+
+    except Exception as e:
+        st.error(f"❌ Errore nel caricamento file giacenze: {e}")
+        return None
+
+# ---------------------------------------------------------------------------
+# CARICAMENTO DATI
+# ---------------------------------------------------------------------------
 
 # Tentativo di caricare il file predefinito
 FILE_EXCEL = "DW_lista_adattatori_completa.xlsx"
