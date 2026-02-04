@@ -94,9 +94,9 @@ def carica_giacenze(uploaded_file):
         df_giac = pd.read_excel(uploaded_file)
 
         colonne_richieste = {
-            "Cd_Ar",
+            "Cd_AR",
             "Cd_MG",
-            "Giacenza",
+            "GIacenza",
             "DispImmediata",
             "Disp"
         }
