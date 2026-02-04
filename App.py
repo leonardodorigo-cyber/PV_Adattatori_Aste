@@ -111,7 +111,7 @@ def carica_giacenze(uploaded_file):
             return None
 
         # Pulizia minima
-        df_giac["Cd_Ar"] = df_giac["Cd_Ar"].astype(str).str.strip()
+        df_giac["Cd_AR"] = df_giac["Cd_AR"].astype(str).str.strip()
 
         return df_giac
 
