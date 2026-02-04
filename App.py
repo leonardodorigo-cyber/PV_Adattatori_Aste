@@ -512,7 +512,7 @@ with st.sidebar:
 
     # Giacenze (opzionale)
     if df_giac is not None:
-        st.success(f"Giacenze caricate ({len(df_giac) righe})")
+        st.success(f"Giacenze caricate ({len(df_giac)} righe)")
     else:
         st.info("Giacenze non caricate")
         
