@@ -149,7 +149,7 @@ if not filetti_trovati:
 st.subheader("📦 Disponibilità Magazzino (opzionale)")
 
 uploaded_giac = st.file_uploader(
-    "Carica file Excel con giacenze (opzionale)",
+    "Carica file Excel con giacenze",
     type=["xlsx"],
     help="Colonne richieste: Cd_AR, Cd_MG, GIacenza, DispImmediata, Disp"
 )
