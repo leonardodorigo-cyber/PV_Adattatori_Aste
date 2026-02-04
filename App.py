@@ -501,6 +501,21 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
 # SIDEBAR INFO
 # ---------------------------------------------------------------------------
 with st.sidebar:
+
+    st.header("📊 Stato Dati")
+
+    # Database principale
+    if df is not None:
+        st.success(f"Database adattatori caricato ({len(df)})")
+    else:
+        st.error("Database adattatori NON caricato")
+
+    # Giacenze (opzionale)
+    if df_giac is not None:
+        st.success(f"Giacenze caricate ({len(df_giac)})")
+    else:
+        st.info("Giacenze non caricate")
+        
     st.header("ℹ️ Informazioni")
     st.markdown(f"""
     **Dataset caricato:**
