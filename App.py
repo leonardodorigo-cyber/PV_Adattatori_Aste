@@ -254,7 +254,7 @@ with col1:
 
 with col2:
     attacco_arrivo_str = st.selectbox(
-        "🔴 Attacco di Arrivo (dell'adattatore)",
+        "🔴 Attacco di Arrivo   (dell'adattatore)",
         options=attacchi_ordinati,
         index=18 if len(attacchi_ordinati) > 17 else 0  # fallback se lista troppo corta
     )
