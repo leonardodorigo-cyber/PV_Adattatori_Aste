@@ -112,12 +112,60 @@ def carica_giacenze(uploaded_file):
 
         # Pulizia minima
         df_giac["Cd_AR"] = df_giac["Cd_AR"].astype(str).str.strip()
+        df_giac["Cd_MG"] = df_giac["Cd_MG"].astype(str).str.strip()
 
         return df_giac
 
     except Exception as e:
         st.error(f"❌ Errore nel caricamento file giacenze: {e}")
         return None
+
+# ---------------------------------------------------------------------------
+# FUNZIONE CALCOLO SEMAFORO DISPONIBILITÀ
+# ---------------------------------------------------------------------------
+
+def calcola_disponibilita(cd_ar, df_giacenze):
+    """
+    Calcola il semaforo di disponibilità per un articolo.
+    
+    Returns:
+        tuple: (emoji_semaforo, tooltip_text)
+    """
+    if df_giacenze is None or df_giacenze.empty:
+        return "⚪", "Giacenze non caricate"
+    
+    # Filtra tutte le righe per questo articolo
+    righe_articolo = df_giacenze[df_giacenze["Cd_AR"] == cd_ar]
+    
+    if righe_articolo.empty:
+        return "⚪", "Articolo non trovato in giacenze"
+    
+    # Verifica condizione VERDE: DispImmediata > 0 nel magazzino 00001
+    mag_00001 = righe_articolo[righe_articolo["Cd_MG"] == "00001"]
+    if not mag_00001.empty:
+        disp_immediata_00001 = mag_00001["DispImmediata"].sum()
+        if disp_immediata_00001 > 0:
+            return "🟢", f"Disponibile a scaffale: {int(disp_immediata_00001)} pz"
+    
+    # Verifica condizione ROSSA: Disp <= 0 in tutti i magazzini
+    disp_totale = righe_articolo["Disp"].sum()
+    if disp_totale <= 0:
+        return "🔴", "Non disponibile in nessun magazzino"
+    
+    # Altrimenti GIALLO (disponibile ma non a scaffale o non immediata)
+    # Costruisci messaggio dettagliato
+    info_magazzini = []
+    for _, riga in righe_articolo.iterrows():
+        mag = riga["Cd_MG"]
+        disp = riga["Disp"]
+        if disp > 0:
+            if mag in ["00230", "00240"]:
+                info_magazzini.append(f"Montato (MG {mag}): {int(disp)} pz")
+            else:
+                info_magazzini.append(f"MG {mag}: {int(disp)} pz")
+    
+    tooltip = " | ".join(info_magazzini) if info_magazzini else "Disponibile (non a scaffale)"
+    return "🟡", tooltip
 
 # ---------------------------------------------------------------------------
 # CARICAMENTO DATI
@@ -254,41 +302,6 @@ def stampa_sequenza_attacchi(sequenza_articoli, df, attacco_partenza):
             nodo_necessario = nodo2
     
     return " → ".join(sequenza)
-
-def verifica_disponibilita(percorso, df_giac):
-    """
-    Controlla la disponibilità degli adattatori in una combinazione.
-
-    Ritorna:
-    - stato: "🟢 Tutto disponibile", "🟡 Parziale", "🔴 Nessuno disponibile"
-    - dettagli: lista di tuple (Cd_Ar, disponibile: True/False)
-    """
-    if df_giac is None:
-        # Nessun file giacenze caricato → consideriamo tutto non disponibile
-        return "❌ Giacenze non caricate", [(cd_ar, False) for cd_ar in percorso]
-
-    dettagli = []
-    for cd_ar in percorso:
-        riga = df_giac[df_giac["Cd_Ar"] == cd_ar]
-        if not riga.empty:
-            # Se almeno Giacenza o DispImmediata > 0 → disponibile
-            giac = riga.iloc[0]["Giacenza"]
-            disp_im = riga.iloc[0]["DispImmediata"]
-            disponibile = (giac > 0) or (disp_im > 0)
-        else:
-            disponibile = False
-        dettagli.append((cd_ar, disponibile))
-
-    # Determina stato globale
-    if all(d[1] for d in dettagli):
-        stato = "🟢 Tutto disponibile"
-    elif any(d[1] for d in dettagli):
-        stato = "🟡 Parziale"
-    else:
-        stato = "🔴 Nessuno disponibile"
-
-    return stato, dettagli
-
 
 # ---------------------------------------------------------------------------
 # COSTRUZIONE ELENCO ORDINATO ATTACCHI
@@ -504,7 +517,7 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
 
                         # st.markdown(f"**Sequenza Attacchi:**   `{sequenza_attacchi}`")
 
-                        # Crea lista dei dettagli
+                        # Crea lista dei dettagli CON SEMAFORO DISPONIBILITÀ
                         dettagli = []
                         
                         for cd_ar in sequenza_articoli: # se vuoi stampare il codice articolo CON prefisso
@@ -515,11 +528,17 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
                             
                             if not riga_df.empty:
                                 riga = riga_df.iloc[0]
+                                
+                                # Calcola semaforo disponibilità
+                                semaforo, tooltip = calcola_disponibilita(cd_ar, df_giac)
+                                
                                 dettagli.append({
+                                    "Disp.": semaforo,
                                     "Articolo": cd_ar, # se vuoi stampare il codice articolo CON prefisso
                                     # "Articolo": articolo, # se vuoi stampare il codice articolo SENZA prefisso
                                     "Categoria": riga['Category'].strip() if pd.notna(riga['Category']) else "",
-                                    "Thread Info": riga['THREAD_INFO'] if pd.notna(riga['THREAD_INFO']) else ""
+                                    "Thread Info": riga['THREAD_INFO'] if pd.notna(riga['THREAD_INFO']) else "",
+                                    "Info Disponibilità": tooltip
                                 })
     
                         # Crea DataFrame per la tabella
@@ -563,6 +582,12 @@ with st.sidebar:
     - Verranno mostrate tutte le combinazioni possibili.
     - Ogni combinazione mostra la **sequenza degli attacchi** e i dettagli di ciascun articolo impiegato.
     - È possibile scaricare tutte le combinazioni in un **file Excel**.
+    
+    **Semaforo Disponibilità:**
+    - 🟢 **Verde**: Disponibile a scaffale (magazzino 00001)
+    - 🟡 **Giallo**: Disponibile ma non a scaffale (es. montato in macchina)
+    - 🔴 **Rosso**: Non disponibile in nessun magazzino
+    - ⚪ **Bianco**: Giacenze non caricate o articolo non trovato
     """)
     
     st.markdown("---")
