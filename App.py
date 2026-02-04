@@ -255,6 +255,41 @@ def stampa_sequenza_attacchi(sequenza_articoli, df, attacco_partenza):
     
     return " → ".join(sequenza)
 
+def verifica_disponibilita(percorso, df_giac):
+    """
+    Controlla la disponibilità degli adattatori in una combinazione.
+
+    Ritorna:
+    - stato: "🟢 Tutto disponibile", "🟡 Parziale", "🔴 Nessuno disponibile"
+    - dettagli: lista di tuple (Cd_Ar, disponibile: True/False)
+    """
+    if df_giac is None:
+        # Nessun file giacenze caricato → consideriamo tutto non disponibile
+        return "❌ Giacenze non caricate", [(cd_ar, False) for cd_ar in percorso]
+
+    dettagli = []
+    for cd_ar in percorso:
+        riga = df_giac[df_giac["Cd_Ar"] == cd_ar]
+        if not riga.empty:
+            # Se almeno Giacenza o DispImmediata > 0 → disponibile
+            giac = riga.iloc[0]["Giacenza"]
+            disp_im = riga.iloc[0]["DispImmediata"]
+            disponibile = (giac > 0) or (disp_im > 0)
+        else:
+            disponibile = False
+        dettagli.append((cd_ar, disponibile))
+
+    # Determina stato globale
+    if all(d[1] for d in dettagli):
+        stato = "🟢 Tutto disponibile"
+    elif any(d[1] for d in dettagli):
+        stato = "🟡 Parziale"
+    else:
+        stato = "🔴 Nessuno disponibile"
+
+    return stato, dettagli
+
+
 # ---------------------------------------------------------------------------
 # COSTRUZIONE ELENCO ORDINATO ATTACCHI
 # ---------------------------------------------------------------------------
