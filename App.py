@@ -138,7 +138,7 @@ def calcola_disponibilita(cd_ar, df_giacenze):
     righe_articolo = df_giacenze[df_giacenze["Cd_AR"] == cd_ar]
     
     if righe_articolo.empty:
-        return "⚪", "Articolo non trovato in giacenze"
+        return "🔴", "Articolo non trovato in giacenze"
     
     # Verifica condizione VERDE: DispImmediata > 0 nel magazzino 00001
     mag_00001 = righe_articolo[righe_articolo["Cd_MG"] == "00001"]
@@ -587,7 +587,7 @@ with st.sidebar:
     - 🟢 **Verde**: Disponibile a scaffale (magazzino 00001)
     - 🟡 **Giallo**: Disponibile ma non a scaffale (es. montato in macchina)
     - 🔴 **Rosso**: Non disponibile in nessun magazzino
-    - ⚪ **Bianco**: Giacenze non caricate o articolo non trovato
+    - ⚪ **Bianco**: File giacenze non caricate
     """)
     
     st.markdown("---")
