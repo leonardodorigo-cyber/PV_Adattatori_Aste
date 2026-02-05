@@ -112,7 +112,7 @@ def carica_giacenze(uploaded_file):
 
         # Pulizia minima
         df_giac["Cd_AR"] = df_giac["Cd_AR"].astype(str).str.strip()
-        df_giac["Cd_MG"] = df_giac["Cd_MG"].astype(str).str.strip()
+        df_giac["Cd_MG"] = df_giac["Cd_MG"].astype(str).str.strip().str.zfill(5)
 
         return df_giac
 
@@ -134,8 +134,16 @@ def calcola_disponibilita(cd_ar, df_giacenze):
     if df_giacenze is None or df_giacenze.empty:
         return "⚪", "Giacenze non caricate"
     
-    # Filtra tutte le righe per questo articolo
-    righe_articolo = df_giacenze[df_giacenze["Cd_AR"] == cd_ar]
+    # Normalizza il codice articolo (rimuovi eventuali prefissi e spazi)
+    cd_ar_clean = str(cd_ar).strip()
+    
+    # Prova prima il match esatto
+    righe_articolo = df_giacenze[df_giacenze["Cd_AR"] == cd_ar_clean]
+    
+    # Se non trova nulla, prova senza prefisso "DWAR-"
+    if righe_articolo.empty and cd_ar_clean.startswith("DWAR-"):
+        cd_ar_no_prefix = cd_ar_clean.replace("DWAR-", "")
+        righe_articolo = df_giacenze[df_giacenze["Cd_AR"] == cd_ar_no_prefix]
     
     if righe_articolo.empty:
         return "🔴", "Articolo non trovato in giacenze"
@@ -302,6 +310,7 @@ def stampa_sequenza_attacchi(sequenza_articoli, df, attacco_partenza):
             nodo_necessario = nodo2
     
     return " → ".join(sequenza)
+
 
 # ---------------------------------------------------------------------------
 # COSTRUZIONE ELENCO ORDINATO ATTACCHI
@@ -586,8 +595,8 @@ with st.sidebar:
     **Semaforo Disponibilità:**
     - 🟢 **Verde**: Disponibile a scaffale (magazzino 00001)
     - 🟡 **Giallo**: Disponibile ma non a scaffale (es. montato in macchina)
-    - 🔴 **Rosso**: Non disponibile in nessun magazzino
-    - ⚪ **Bianco**: File giacenze non caricate
+    - 🔴 **Rosso**: Non disponibile o non trovato in giacenze
+    - ⚪ **Bianco**: File giacenze non caricato
     """)
     
     st.markdown("---")
