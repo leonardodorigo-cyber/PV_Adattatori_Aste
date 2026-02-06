@@ -124,6 +124,39 @@ def carica_giacenze(uploaded_file):
 # FUNZIONE CALCOLO SEMAFORO DISPONIBILITÀ
 # ---------------------------------------------------------------------------
 
+def calcola_semaforo_complessivo(sequenza_articoli, df_giacenze):
+    """
+    Calcola il semaforo complessivo per una combinazione di articoli.
+    
+    Logica:
+    - Tutto verde → 🟢
+    - Verde + almeno un giallo → 🟡
+    - Tutto giallo → 🟡
+    - Almeno un rosso → 🔴
+    
+    Returns:
+        str: emoji del semaforo complessivo
+    """
+    semafori = []
+    for cd_ar in sequenza_articoli:
+        semaforo, _ = calcola_disponibilita(cd_ar, df_giacenze)
+        semafori.append(semaforo)
+    
+    # Se c'è almeno un rosso → ROSSO
+    if "🔴" in semafori:
+        return "🔴"
+    
+    # Se c'è almeno un giallo → GIALLO
+    if "🟡" in semafori:
+        return "🟡"
+    
+    # Se tutti verdi → VERDE
+    if all(s == "🟢" for s in semafori):
+        return "🟢"
+    
+    # Default (es. tutti bianchi o mix con bianchi) → BIANCO
+    return "⚪"
+
 def calcola_disponibilita(cd_ar, df_giacenze):
     """
     Calcola il semaforo di disponibilità per un articolo.
@@ -430,8 +463,12 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
         risultati_export = []
         
         for p in percorsi_trovati:
+            # Calcola semaforo complessivo
+            semaforo_complessivo = calcola_semaforo_complessivo(p, df_giac)
+            
             # Crea una riga con max 5 colonne (adattatore_1, adattatore_2, ecc.)
             riga = {
+                'Disponibilità': semaforo_complessivo,
                 'Adattatore_1': p[0] if len(p) > 0 else None,
                 'Adattatore_2': p[1] if len(p) > 1 else None,
                 'Adattatore_3': p[2] if len(p) > 2 else None,
@@ -509,7 +546,10 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
                 for i, sequenza_articoli in enumerate(percorsi_per_num[num_art], 1):
                     sequenza_attacchi = stampa_sequenza_attacchi(sequenza_articoli, df, attacco_partenza)
                     
-                    with st.expander(f"Combinazione {i}:   `{' → '.join(sequenza_articoli)}`", expanded=True):
+                    # Calcola semaforo complessivo
+                    semaforo_complessivo = calcola_semaforo_complessivo(sequenza_articoli, df_giac)
+                    
+                    with st.expander(f"{semaforo_complessivo} Combinazione {i}:   `{' → '.join(sequenza_articoli)}`", expanded=True):
                     # with st.expander(f"Combinazione {i}:   `{sequenza_attacchi}` ", expanded=True):
                         # st.markdown(f"**Codici Articolo:**   `{' → '.join(sequenza_articoli)}`")
                         st.markdown(f"**Sequenza Attacchi:**   `{sequenza_attacchi}`")
