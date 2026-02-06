@@ -179,19 +179,20 @@ def calcola_disponibilita(cd_ar, df_giacenze):
         righe_articolo = df_giacenze[df_giacenze["Cd_AR"] == cd_ar_no_prefix]
     
     if righe_articolo.empty:
-        return "🔴", "Articolo non trovato in giacenze"
+        return "🔴", "Non in giacenza"
     
     # Verifica condizione VERDE: DispImmediata > 0 nel magazzino 00001
     mag_00001 = righe_articolo[righe_articolo["Cd_MG"] == "00001"]
     if not mag_00001.empty:
         disp_immediata_00001 = mag_00001["DispImmediata"].sum()
         if disp_immediata_00001 > 0:
-            return "🟢", f"Disponibile a scaffale: {int(disp_immediata_00001)} pz"
-    
+            # return "🟢", f"Disponibile a scaffale: {int(disp_immediata_00001)} pz"
+            return "🟢", f"{int(disp_immediata_00001)} pz"
+        
     # Verifica condizione ROSSA: Disp <= 0 in tutti i magazzini
     disp_totale = righe_articolo["Disp"].sum()
     if disp_totale <= 0:
-        return "🔴", "Non disponibile in nessun magazzino"
+        return "🔴", "Non disponibile"
     
     # Altrimenti GIALLO (disponibile ma non a scaffale o non immediata)
     # Costruisci messaggio dettagliato
