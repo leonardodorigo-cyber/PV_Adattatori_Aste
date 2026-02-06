@@ -626,7 +626,7 @@ with st.sidebar:
 
     # Database principale
     if df is not None:
-        st.success(f"Database caricato ({len(df)} righe)")
+        st.success(f"Database adattatori ({len(df)} righe)✅")
     else:
         st.error("Database adattatori NON caricato")
 
@@ -650,8 +650,8 @@ with st.sidebar:
     - È possibile scaricare tutte le combinazioni in un **file Excel**.
     
     **Semaforo Disponibilità:**
-    - 🟢 **Verde**: Disponibile a scaffale (magazzino 00001)
-    - 🟡 **Giallo**: Disponibile ma non a scaffale (es. montato in macchina)
+    - 🟢 **Verde**: Disponibilità immediata (mag. 00001)
+    - 🟡 **Giallo**: In giacenza ma non a scaffale (es. montato in macchina)
     - 🔴 **Rosso**: Non disponibile o non trovato in giacenze
     - ⚪ **Bianco**: File giacenze non caricato
     """)
