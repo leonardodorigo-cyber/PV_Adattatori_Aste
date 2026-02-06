@@ -626,13 +626,15 @@ with st.sidebar:
 
     # Database principale
     if df is not None:
-        st.success(f"Database adattatori ({len(df)} righe)✅")
+        # st.success(f"Database adattatori ({len(df)} righe)")
+        st.success(f"Database adattatori ({len(df)}) ✅")
     else:
         st.error("Database adattatori NON caricato")
 
     # Giacenze (opzionale)
     if df_giac is not None:
-        st.success(f"Giacenze caricate ({len(df_giac)} righe)")
+        # st.success(f"Giacenze caricate ({len(df_giac)} righe)")
+        st.success(f"Giacenze ({len(df_giac)}) ✅")
     else:
         st.info("Giacenze non caricate")
         
