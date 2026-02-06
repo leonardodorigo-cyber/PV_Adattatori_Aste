@@ -538,6 +538,22 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
         for p in percorsi_trovati:
             percorsi_per_num[len(p)].append(p)
         
+        # Ordina ogni gruppo per semaforo (verde → giallo → rosso → bianco)
+        ordine_semafori = {"🟢": 1, "🟡": 2, "🔴": 3, "⚪": 4}
+        
+        for num_art in percorsi_per_num.keys():
+            # Calcola semaforo per ogni percorso e ordina
+            percorsi_con_semaforo = []
+            for p in percorsi_per_num[num_art]:
+                semaforo = calcola_semaforo_complessivo(p, df_giac)
+                percorsi_con_semaforo.append((p, semaforo))
+            
+            # Ordina per priorità del semaforo
+            percorsi_con_semaforo.sort(key=lambda x: ordine_semafori.get(x[1], 5))
+            
+            # Salva solo i percorsi ordinati
+            percorsi_per_num[num_art] = [p for p, _ in percorsi_con_semaforo]
+        
         # Mostra con tabs
         tabs = st.tabs([f"{'⭐' if i==1 else ''} {i} adattator{'i' if i>1 else 'e'} ({len(percorsi_per_num[i])} combinazioni)" 
                        for i in sorted(percorsi_per_num.keys())])
