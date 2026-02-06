@@ -598,7 +598,7 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
                                 # Calcola semaforo disponibilità
                                 semaforo, tooltip = calcola_disponibilita(cd_ar, df_giac)
 
-                                if df_giac is none:
+                                if df_giac is None:
                                     dettagli.append({
                                         "Articolo": cd_ar, # se vuoi stampare il codice articolo CON prefisso
                                         # "Articolo": articolo, # se vuoi stampare il codice articolo SENZA prefisso
