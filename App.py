@@ -655,7 +655,7 @@ with st.sidebar:
     - 🟢 **Verde**: Disponibilità immediata (mag. 00001)
     - 🟡 **Giallo**: In giacenza ma non a scaffale (es. montato in macchina)
     - 🔴 **Rosso**: Non disponibile o non trovato in giacenze
-    - ⚪ **Bianco**: File giacenze non caricato
+    - ⚪ **Bianco**: File giacenze assenti
     """)
     
     st.markdown("---")
