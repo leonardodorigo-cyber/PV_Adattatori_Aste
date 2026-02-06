@@ -597,15 +597,24 @@ if st.button("🔍 RICERCA ADATTATORI", type="primary", use_container_width=True
                                 
                                 # Calcola semaforo disponibilità
                                 semaforo, tooltip = calcola_disponibilita(cd_ar, df_giac)
-                                
-                                dettagli.append({
-                                    "Disp.": semaforo,
-                                    "Articolo": cd_ar, # se vuoi stampare il codice articolo CON prefisso
-                                    # "Articolo": articolo, # se vuoi stampare il codice articolo SENZA prefisso
-                                    "Categoria": riga['Category'].strip() if pd.notna(riga['Category']) else "",
-                                    "Thread Info": riga['THREAD_INFO'] if pd.notna(riga['THREAD_INFO']) else "",
-                                    "Info Disponibilità": tooltip
-                                })
+
+                                if df_giac is none:
+                                    dettagli.append({
+                                        "Articolo": cd_ar, # se vuoi stampare il codice articolo CON prefisso
+                                        # "Articolo": articolo, # se vuoi stampare il codice articolo SENZA prefisso
+                                        "Categoria": riga['Category'].strip() if pd.notna(riga['Category']) else "",
+                                        "Thread Info": riga['THREAD_INFO'] if pd.notna(riga['THREAD_INFO']) else "",
+                                    })
+
+                                else:
+                                    dettagli.append({
+                                        "Disp.": semaforo,
+                                        "Articolo": cd_ar, # se vuoi stampare il codice articolo CON prefisso
+                                        # "Articolo": articolo, # se vuoi stampare il codice articolo SENZA prefisso
+                                        "Categoria": riga['Category'].strip() if pd.notna(riga['Category']) else "",
+                                        "Thread Info": riga['THREAD_INFO'] if pd.notna(riga['THREAD_INFO']) else "",
+                                        "Info Disponibilità": tooltip
+                                    })
     
                         # Crea DataFrame per la tabella
                         df_tabella = pd.DataFrame(dettagli)
