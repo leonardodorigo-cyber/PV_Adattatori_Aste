@@ -654,7 +654,7 @@ with st.sidebar:
     **Semaforo Disponibilità:**
     - 🟢 **Verde**: Disponibilità immediata (mag. 00001)
     - 🟡 **Giallo**: In giacenza ma non a scaffale (es. montato in macchina)
-    - 🔴 **Rosso**: Non disponibile o non trovato in giacenze
+    - 🔴 **Rosso**: Non disponibile o non in giacenze
     - ⚪ **Bianco**: File giacenze assente
     """)
     
